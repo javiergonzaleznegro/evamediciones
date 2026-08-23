@@ -3,13 +3,14 @@
 Aplicación interna para tomar medidas de estores, cortinas y rieles en casa del
 cliente y generar un PDF por estancia, listo para enviar al proveedor.
 
-**Versión actual: v1.2.1**
+**Versión actual: v1.3.1**
 
 ---
 
 ## Qué hace
 
 - Una ficha por estancia con todos los campos fijos, para que no se olvide ninguno.
+- Cada artículo (estor, cortina o visillo, visillo con cejilla, cortina vertical, noche y día, enagua, riel) muestra solo sus propios campos.
 - Distingue de forma obligatoria **ancho de tejido** y **ancho de mecanismo**.
 - Dibuja el esquema con las cotas según se escriben las medidas.
 - Genera un **PDF A4 por estancia** con el formato de las hojas de siempre.
@@ -66,3 +67,5 @@ datos de clientes. Al pulsar «Empezar un trabajo nuevo» se borra lo que hubier
 | v1.1.0 | Se puede desmarcar una opción pulsándola otra vez. Botones fuera de la barra fija. Logotipo real en la cabecera e iconos en secciones y botones. |
 | v1.2.0 | Fecha en casilla de texto con botón «Hoy» (el calendario de Android se desbordaba). Cabecera de tamaño fijo. Esquema que se adapta al ancho disponible. |
 | v1.2.1 | Icono con la regla de cinco marcas y en azul #0060C0, con más contraste. |
+| v1.3.0 | Cada artículo abre su propio menú con sus datos: cortina o visillo, visillo con cejilla, cortina vertical, noche y día y enagua. La enagua de capa calcula sola sus medidas (mesa + 2×alto − 4 cm) y dibuja la forma de la mesa. |
+| v1.3.1 | Pestañas plegables: «Datos del trabajo» y cada estancia se pliegan tocando su cabecera. Al cargar un trabajo con varias estancias, vienen plegadas con su nombre a la vista. |

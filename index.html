@@ -145,7 +145,23 @@
     border-top:0.3rem solid var(--azul-claro);
     padding:0.9rem 0.9rem 0.1rem; margin:1rem 0; background:#fff;
   }
-  .estancia .cab{ display:flex; align-items:center; gap:0.5rem; margin-bottom:0.8rem; }
+  .estancia .cab{
+    display:flex; align-items:center; gap:0.5rem; margin-bottom:0.8rem;
+    cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;
+  }
+  .cab-titulo{
+    flex:1 1 auto; min-width:0; font-weight:700; font-size:1.05rem; color:var(--tinta);
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .cab .flecha{ width:1.5rem; height:1.5rem; color:var(--azul); flex:0 0 auto;
+    transition:transform .15s; stroke-width:2.4; }
+  .estancia.plegada .flecha{ transform:rotate(-90deg); }
+  .estancia.plegada .cuerpo{ display:none; }
+  .estancia.plegada .cab{ margin-bottom:0; }
+  h2.plegable{ cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent; }
+  h2.plegable .flecha{ margin-left:auto; width:1.4em; height:1.4em; transition:transform .15s; stroke-width:2.4; }
+  h2.plegable.cerrado .flecha{ transform:rotate(-90deg); }
+  #bloqueTrabajo.plegada{ display:none; }
   .estancia .num{
     flex:0 0 auto; width:2.4rem; height:2.4rem; border-radius:50%;
     background:var(--suave); color:var(--azul); font-weight:800;
@@ -193,6 +209,17 @@
   }
   .esquema .tip{ font-size:0.85rem; font-size:min(0.85rem, 15px); color:var(--gris); margin-top:0.4rem; }
 
+  .calculo{
+    border:2px solid var(--azul); border-left-width:0.45rem; border-radius:0.45rem;
+    background:var(--suave); padding:0.6rem 0.8rem; margin:0 0 0.9rem;
+  }
+  .calculo-tit{
+    display:block; font-size:0.85rem; font-weight:700; color:var(--gris);
+    text-transform:uppercase; letter-spacing:.04em;
+  }
+  .calculo-val{ display:block; font-size:1.4rem; font-weight:800; color:var(--azul); }
+  .calculo-nota{ display:block; font-size:0.8rem; color:var(--gris); margin-top:0.2rem; }
+  .rect.sin-barra{ border-top-width:3px; }
   .condicional{ display:none; }
   .condicional.visible{ display:block; }
   .subgrupo{ border-left:0.25rem solid var(--suave); padding-left:0.7rem; margin:0 0 0.9rem; }
@@ -337,7 +364,7 @@
 </header>
 
 <main>
-  <h2><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>Datos del trabajo</h2>
+  <h2 id="togTrabajo" class="plegable" role="button" tabindex="0"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>Datos del trabajo<svg class="ic flecha" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></h2>
   <div class="bloque trabajo" id="bloqueTrabajo">
     <div class="fila">
       <div class="campo" data-req="1">
@@ -405,7 +432,7 @@
 
     <hr class="sep">
     <button type="button" id="btnNuevo"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 6"/><path d="M20 4v6h-6"/></svg>Empezar un trabajo nuevo</button>
-    <p class="version">Toma de medidas · v1.2.1</p>
+    <p class="version">Toma de medidas · v1.3.1</p>
   </div>
 </main>
 
@@ -425,11 +452,15 @@
   <section class="estancia">
     <div class="cab">
       <span class="num"></span>
+      <span class="cab-titulo">Sin nombre</span>
+      <svg class="ic flecha" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       <div class="acciones">
         <button type="button" class="duplicar"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Duplicar</button>
         <button type="button" class="borrar"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13"/></svg>Borrar</button>
       </div>
     </div>
+
+    <div class="cuerpo">
 
     <div class="fila">
       <div class="campo" data-req="1">
@@ -447,9 +478,11 @@
       <div class="chips" data-chips="articulo">
         <input type="radio" value="Estor enrollable" checked><label></label>
         <input type="radio" value="Estor exterior"><label></label>
-        <input type="radio" value="Cortina"><label></label>
-        <input type="radio" value="Panel japonés"><label></label>
-        <input type="radio" value="Cortina de tiras"><label></label>
+        <input type="radio" value="Cortina noche y día"><label>Noche y día</label>
+        <input type="radio" value="Cortina o visillo"><label></label>
+        <input type="radio" value="Visillo con cejilla"><label></label>
+        <input type="radio" value="Cortina vertical"><label></label>
+        <input type="radio" value="Enagua"><label></label>
         <input type="radio" value="Riel o barra"><label></label>
         <input type="radio" value="Otro"><label></label>
       </div>
@@ -458,7 +491,7 @@
       </div>
     </div>
 
-    <div class="campo" data-req="1">
+    <div class="campo" data-req="1" data-para="estor estorext nochedia">
       <label>El ancho apuntado es… <span class="oblig">*</span></label>
       <div class="chips" data-chips="tipoAncho">
         <input type="radio" value="ANCHO TEJIDO"><label>del TEJIDO</label>
@@ -466,18 +499,117 @@
       </div>
     </div>
 
-    <div class="fila">
-      <div class="campo corto" data-req="1">
+    <div class="fila" data-para="estor estorext nochedia visillo otro">
+      <div class="campo corto" data-req="1" data-reqno="otro">
         <label>Ancho (cm) <span class="oblig">*</span></label>
         <input type="number" data-field="ancho" inputmode="decimal" min="1" step="0.5">
       </div>
-      <div class="campo corto" data-req="1">
+      <div class="campo corto" data-req="1" data-reqno="otro">
         <label>Alto (cm) <span class="oblig">*</span></label>
         <input type="number" data-field="alto" inputmode="decimal" min="1" step="0.5">
       </div>
     </div>
 
-    <div class="esquema">
+    <div class="fila" data-para="cortina vertical">
+      <div class="campo corto" data-req="1">
+        <label>Ancho mecanismo (cm) <span class="oblig">*</span></label>
+        <input type="number" data-field="anchoMec" inputmode="decimal" min="1" step="0.5">
+      </div>
+      <div class="campo corto" data-req="1" data-para="vertical">
+        <label>Alto terminado (cm) <span class="oblig">*</span></label>
+        <input type="number" data-field="altoTerm" inputmode="decimal" min="1" step="0.5">
+      </div>
+    </div>
+
+    <div class="fila" data-para="cortina">
+      <div class="campo corto">
+        <label>Metros de vuelo</label>
+        <input type="number" data-field="vueloM" inputmode="decimal" min="0" step="0.1">
+      </div>
+      <div class="campo">
+        <label>Vuelo</label>
+        <div class="chips" data-chips="vueloTipo">
+          <input type="radio" value="Partido"><label></label>
+          <input type="radio" value="Entero"><label></label>
+        </div>
+      </div>
+    </div>
+    <div class="fila" data-para="cortina">
+      <div class="campo">
+        <label>Cinta (modelo)</label>
+        <input type="text" data-field="cinta" placeholder="p. ej. fruncidora 5 bolsas" autocomplete="off">
+      </div>
+      <div class="campo corto">
+        <label>Alto S/T (cm)</label>
+        <input type="number" data-field="altoST" inputmode="decimal" min="1" step="0.5">
+      </div>
+      <div class="campo corto" data-req="1">
+        <label>Alto tejido (cm) <span class="oblig">*</span></label>
+        <input type="number" data-field="altoTejido" inputmode="decimal" min="1" step="0.5">
+      </div>
+    </div>
+
+    <div class="campo" data-req="1" data-para="visillo">
+      <label>Cejilla <span class="oblig">*</span></label>
+      <div class="chips" data-chips="cejilla">
+        <input type="radio" value="Arriba"><label></label>
+        <input type="radio" value="Arriba y abajo"><label></label>
+      </div>
+    </div>
+
+    <div class="fila" data-para="vertical">
+      <div class="campo corto">
+        <label>Lama (mm)</label>
+        <input type="number" data-field="lama" inputmode="numeric" min="1" step="1" placeholder="89 o 127">
+      </div>
+      <div class="campo" data-req="1">
+        <label>Apertura <span class="oblig">*</span></label>
+        <div class="chips" data-chips="apertura">
+          <input type="radio" value="Izquierda"><label></label>
+          <input type="radio" value="Derecha"><label></label>
+          <input type="radio" value="Centro a extremos"><label></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="campo" data-req="1" data-para="enagua">
+      <label>Forma de la mesa <span class="oblig">*</span></label>
+      <div class="chips" data-chips="forma">
+        <input type="radio" value="Redonda"><label></label>
+        <input type="radio" value="Cuadrada"><label></label>
+        <input type="radio" value="Rectangular"><label></label>
+        <input type="radio" value="Ovalada"><label></label>
+        <input type="radio" value="Petaca"><label></label>
+      </div>
+    </div>
+    <div class="fila" data-para="enagua">
+      <div class="campo corto" data-req="1">
+        <label data-etq="mesaAncho">Ancho de la mesa (cm) <span class="oblig">*</span></label>
+        <input type="number" data-field="mesaAncho" inputmode="decimal" min="1" step="0.5">
+      </div>
+      <div class="campo corto" data-req="1">
+        <label>Largo de la mesa (cm) <span class="oblig">*</span></label>
+        <input type="number" data-field="mesaLargo" inputmode="decimal" min="1" step="0.5">
+      </div>
+      <div class="campo corto" data-req="1">
+        <label>Alto de la enagua (cm) <span class="oblig">*</span></label>
+        <input type="number" data-field="altoEnagua" inputmode="decimal" min="1" step="0.5">
+      </div>
+    </div>
+    <div class="campo" data-req="1" data-para="enagua">
+      <label>Confección <span class="oblig">*</span></label>
+      <div class="chips" data-chips="tipoEnagua">
+        <input type="radio" value="De capa"><label></label>
+        <input type="radio" value="De machos"><label></label>
+      </div>
+    </div>
+    <div class="calculo" data-para="enagua">
+      <span class="calculo-tit">Medidas de la enagua</span>
+      <span class="calculo-val">—</span>
+      <span class="calculo-nota">Cálculo (capa): medida de la mesa + 2 × alto de la enagua − 4 cm</span>
+    </div>
+
+    <div class="esquema" data-para="estor estorext nochedia cortina visillo vertical enagua otro">
       <div class="zona">
         <div class="cota-h"><span class="lin"></span><span class="val v-ancho">—</span></div>
         <div class="esq-fila">
@@ -488,28 +620,28 @@
       </div>
     </div>
 
-    <div class="fila">
-      <div class="campo corto" data-reqestor="1">
-        <label>Mando</label>
+    <div class="fila" data-para="estor estorext nochedia vertical">
+      <div class="campo corto" data-req="1">
+        <label>Mando <span class="oblig">*</span></label>
         <div class="chips" data-chips="mando">
-          <input type="radio" value="Izquierda"><label>Izquierda</label>
-          <input type="radio" value="Derecha"><label>Derecha</label>
+          <input type="radio" value="Izquierda"><label></label>
+          <input type="radio" value="Derecha"><label></label>
         </div>
       </div>
-      <div class="campo corto" data-reqestor="1">
-        <label>Salida</label>
+      <div class="campo corto" data-req="1" data-para="estor estorext nochedia">
+        <label>Salida <span class="oblig">*</span></label>
         <div class="chips" data-chips="salida">
-          <input type="radio" value="Delantera"><label>Delantera</label>
-          <input type="radio" value="Trasera"><label>Trasera</label>
+          <input type="radio" value="Delantera"><label></label>
+          <input type="radio" value="Trasera"><label></label>
         </div>
       </div>
     </div>
 
-    <div class="campo">
+    <div class="campo" data-para="estor estorext nochedia">
       <label>Motorizado</label>
       <div class="chips" data-chips="motor">
-        <input type="radio" value="No" checked><label>No</label>
-        <input type="radio" value="Con pulsador"><label>Con pulsador</label>
+        <input type="radio" value="No" checked><label></label>
+        <input type="radio" value="Con pulsador"><label></label>
         <input type="radio" value="Con mando a distancia"><label>Con mando</label>
       </div>
       <div class="condicional" data-cond="motor-lado" style="margin-top:8px">
@@ -517,7 +649,7 @@
       </div>
     </div>
 
-    <div class="fila">
+    <div class="fila" data-para="estor estorext nochedia">
       <div class="campo corto">
         <label>Tubo</label>
         <div class="chips" data-chips="tubo">
@@ -530,13 +662,13 @@
         <label>Color mecanismo</label>
         <div class="chips" data-chips="mecColor">
           <input type="radio" value="" checked><label>Sin indicar</label>
-          <input type="radio" value="Blanco"><label>Blanco</label>
-          <input type="radio" value="Negro"><label>Negro</label>
+          <input type="radio" value="Blanco"><label></label>
+          <input type="radio" value="Negro"><label></label>
         </div>
       </div>
     </div>
 
-    <div class="fila">
+    <div class="fila" data-para="estor estorext nochedia">
       <div class="campo">
         <label>Soportes</label>
         <input type="text" data-field="soportes" placeholder="p. ej. soporte mini Mérida color blanco" autocomplete="off">
@@ -544,31 +676,31 @@
       <div class="campo corto">
         <label>Guías exterior</label>
         <div class="chips" data-chips="guias">
-          <input type="radio" value="No" checked><label>No</label>
-          <input type="radio" value="Sí"><label>Sí</label>
+          <input type="radio" value="No" checked><label></label>
+          <input type="radio" value="Sí"><label></label>
         </div>
       </div>
     </div>
-    <div class="condicional subgrupo" data-cond="guias-det">
+    <div class="condicional subgrupo" data-cond="guias-det" data-para="estor estorext nochedia">
       <div class="campo">
         <label>Detalle de las guías</label>
         <input type="text" data-field="guiasDet" placeholder="p. ej. pared / pared" autocomplete="off">
       </div>
     </div>
 
-    <h2 style="margin-top:0.6rem">Tejido</h2>
-    <div class="fila">
-      <div class="campo" data-req="1">
+    <h2 style="margin-top:0.6rem" data-para="estor estorext nochedia cortina visillo vertical enagua otro">Tejido</h2>
+    <div class="fila" data-para="estor estorext nochedia cortina visillo vertical enagua otro">
+      <div class="campo" data-req="1" data-reqno="otro">
         <label>Modelo / referencia <span class="oblig">*</span></label>
         <input type="text" data-field="tejido" placeholder="p. ej. Basicscreen, Oslo, PE 1000" autocomplete="off">
       </div>
-      <div class="campo" data-req="1">
+      <div class="campo" data-req="1" data-reqno="otro">
         <label>Color <span class="oblig">*</span></label>
         <input type="text" data-field="color" placeholder="p. ej. blanco-lino, 22 (gris)" autocomplete="off">
       </div>
     </div>
-    <div class="fila">
-      <div class="campo corto" data-req="1">
+    <div class="fila" data-para="estor estorext nochedia cortina visillo vertical enagua otro">
+      <div class="campo corto" data-req="1" data-reqno="otro">
         <label>Proveedor <span class="oblig">*</span></label>
         <input type="text" data-field="proveedor" list="dl-proveedores" autocomplete="off">
       </div>
@@ -578,14 +710,14 @@
       </div>
     </div>
 
-    <div class="campo">
+    <div class="campo" data-para="cortina visillo otro riel">
       <label>Riel o barra</label>
       <div class="chips" data-chips="riel">
-        <input type="radio" value="No" checked><label>No</label>
-        <input type="radio" value="Sí"><label>Sí</label>
+        <input type="radio" value="No" checked><label></label>
+        <input type="radio" value="Sí"><label></label>
       </div>
     </div>
-    <div class="condicional subgrupo" data-cond="riel-det">
+    <div class="condicional subgrupo" data-cond="riel-det" data-para="cortina visillo otro riel">
       <div class="fila">
         <div class="campo">
           <label>Tipo</label>
@@ -605,6 +737,7 @@
     <div class="campo">
       <label>Observaciones</label>
       <textarea data-field="obs"></textarea>
+    </div>
     </div>
   </section>
 </template>
@@ -683,21 +816,115 @@
     ver("guias-det", guias === "Sí");
     ver("riel-det", riel === "Sí");
   }
+  /* ---------- artículo: cada apartado con sus datos propios ---------- */
+  function claveArticulo(v){
+    switch(String(v || "")){
+      case "Estor enrollable": return "estor";
+      case "Estor exterior": return "estorext";
+      case "Cortina noche y día": return "nochedia";
+      case "Cortina o visillo": return "cortina";
+      case "Visillo con cejilla": return "visillo";
+      case "Cortina vertical": return "vertical";
+      case "Enagua": return "enagua";
+      case "Riel o barra": return "riel";
+      case "": return "";
+      default: return "otro";
+    }
+  }
+  function refrescarArticulo(sec){
+    var clave = claveArticulo(valorChips(sec, "articulo"));
+    $$("[data-para]", sec).forEach(function(el){
+      var lista = el.getAttribute("data-para").split(" ");
+      el.style.display = (lista.indexOf(clave) !== -1) ? "" : "none";
+    });
+    if(clave === "enagua"){
+      var forma = valorChips(sec, "forma");
+      var campoLargo = $("[data-field=mesaLargo]", sec).closest(".campo");
+      campoLargo.style.display = (forma === "Redonda" || forma === "Cuadrada") ? "none" : "";
+      var labA = $("[data-etq=mesaAncho]", sec);
+      var t = forma === "Redonda" ? "Diámetro de la mesa (cm)" :
+              forma === "Cuadrada" ? "Lado de la mesa (cm)" : "Ancho de la mesa (cm)";
+      labA.innerHTML = t + ' <span class="oblig">*</span>';
+    }
+    if(clave === "riel" && valorChips(sec, "riel") !== "Sí"){
+      var r = $$(".chips[data-chips=riel] input", sec).filter(function(x){ return x.value === "Sí"; })[0];
+      if(r){ r.checked = true; marcado[r.name] = "Sí"; refrescarCondicionales(sec); }
+    }
+  }
+
+  /* ---------- números y cálculo de la enagua ---------- */
+  function num(v){
+    var n = parseFloat(v);
+    if(!(n > 0)) return "";
+    return String(Math.round(n * 10) / 10);
+  }
+  function calculoEnagua(e){
+    if(e.tipoEnagua !== "De capa") return null;
+    var alto = parseFloat(e.altoEnagua), a = parseFloat(e.mesaAncho), l = parseFloat(e.mesaLargo);
+    if(!(alto > 0) || !(a > 0)) return null;
+    var extra = 2 * alto - 4;
+    if(e.forma === "Redonda" || e.forma === "Cuadrada") return {a: a + extra, h: a + extra};
+    if(!(l > 0)) return null;
+    return {a: a + extra, h: l + extra};
+  }
+  function dimsEstancia(e){
+    var k = claveArticulo(e.articulo);
+    function f(v){ var n = parseFloat(v); return n > 0 ? n : NaN; }
+    if(k === "cortina") return {a: f(e.anchoMec), h: f(e.altoTejido) || f(e.altoST), etq: "ANCHO MECANISMO"};
+    if(k === "vertical") return {a: f(e.anchoMec), h: f(e.altoTerm), etq: "ANCHO MECANISMO"};
+    if(k === "visillo") return {a: f(e.ancho), h: f(e.alto), etq: "ANCHO TEJIDO"};
+    if(k === "enagua"){
+      var c = calculoEnagua(e);
+      if(c) return {a: c.a, h: c.h, etq: "MEDIDAS DE LA ENAGUA", forma: e.forma, sinBarra: true};
+      var esR = (e.forma === "Redonda" || e.forma === "Cuadrada");
+      return {a: f(e.mesaAncho), h: esR ? f(e.mesaAncho) : f(e.mesaLargo),
+              etq: "MEDIDAS DE LA MESA", forma: e.forma, sinBarra: true};
+    }
+    if(k === "riel") return {a: NaN, h: NaN, etq: ""};
+    return {a: f(e.ancho), h: f(e.alto), etq: e.tipoAncho || "ANCHO"};
+  }
+  function radioForma(forma){
+    if(forma === "Redonda" || forma === "Ovalada") return "50%";
+    if(forma === "Petaca") return "12%";
+    return "0";
+  }
+  function refrescarCalculo(sec){
+    var caja = $(".calculo", sec);
+    if(!caja) return;
+    var e = leerEstancia(sec);
+    if(claveArticulo(e.articulo) !== "enagua") return;
+    var val = $(".calculo-val", caja);
+    var c = calculoEnagua(e);
+    if(c){
+      val.textContent = (e.forma === "Redonda")
+        ? ("Ø " + num(c.a) + " cm")
+        : (num(c.a) + " × " + num(c.h) + " cm");
+    }else if(e.tipoEnagua === "De machos"){
+      val.textContent = "De machos: el cálculo se hace a mano";
+    }else{
+      val.textContent = "Faltan medidas";
+    }
+  }
+
 
   /* ---------- esquema de cotas ---------- */
   function refrescarEsquema(sec){
-    var a = parseFloat($("[data-field=ancho]", sec).value);
-    var h = parseFloat($("[data-field=alto]", sec).value);
-    var rect = $(".rect", sec);
     var caja = $(".esquema", sec);
+    var e = leerEstancia(sec);
+    var d = dimsEstancia(e);
+    if(!caja || claveArticulo(e.articulo) === "riel") return;
+    var a = d.a, h = d.h;
+    var rect = $(".rect", sec);
     var zona = $(".esquema .zona", sec);
     var cotaV = $(".cota-v", sec);
     var etiqAlto = $(".v-alto", sec);
     var rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 21;
 
-    // primero el texto, para poder medir cuánto ocupa de verdad
-    $(".v-ancho", sec).textContent = (a > 0 ? a + " cm" : "—");
-    etiqAlto.textContent = (h > 0 ? h + " cm" : "—");
+    rect.style.borderRadius = radioForma(d.forma);
+    rect.classList.toggle("sin-barra", !!d.sinBarra);
+
+    $(".v-ancho", sec).textContent = (a > 0 ? num(a) + " cm" : "—");
+    etiqAlto.textContent = (h > 0 ? num(h) + " cm" : "—");
 
     var anchoEtiq = etiqAlto.offsetWidth || Math.round(rem * 3);
     var reserva = Math.min(Math.round(rem * 6),
@@ -721,6 +948,25 @@
     zona.style.width = Math.min(disp, w + reserva) + "px";
   }
 
+
+  /* ---------- pestañas ---------- */
+  function refrescarTitulo(sec){
+    var v = $("[data-field=estancia]", sec).value.trim();
+    $(".cab-titulo", sec).textContent = v || "Sin nombre";
+  }
+  function plegarEstancia(sec, plegar){
+    sec.classList.toggle("plegada", !!plegar);
+    if(!plegar) refrescarEsquema(sec);
+  }
+  function abrirTrabajo(){
+    $("#bloqueTrabajo").classList.remove("plegada");
+    $("#togTrabajo").classList.remove("cerrado");
+  }
+  $("#togTrabajo").addEventListener("click", function(){
+    var cerrado = $("#bloqueTrabajo").classList.toggle("plegada");
+    $("#togTrabajo").classList.toggle("cerrado", cerrado);
+  });
+
   /* ---------- numerar ---------- */
   function renumerar(){
     $$(".estancia", lista).forEach(function(sec, i){
@@ -735,9 +981,12 @@
     prepararChips(sec);
     lista.appendChild(frag);
     if(datos) volcarEstancia(sec, datos);
+    refrescarTitulo(sec);
     sincronizarMarcado(sec);
     refrescarCondicionales(sec);
+    refrescarArticulo(sec);
     refrescarEsquema(sec);
+    refrescarCalculo(sec);
     renumerar();
     return sec;
   }
@@ -789,6 +1038,13 @@
         if(el) el.value = s.trabajo[f];
       });
       (s.estancias || []).forEach(function(e){ nuevaEstancia(e); });
+      if((s.estancias || []).length > 1){
+        $$(".estancia", lista).forEach(function(sec){ plegarEstancia(sec, true); });
+      }
+      if(s.trabajo && s.trabajo.cliente){
+        $("#bloqueTrabajo").classList.add("plegada");
+        $("#togTrabajo").classList.add("cerrado");
+      }
       return (s.estancias || []).length > 0;
     }catch(e){ return false; }
   }
@@ -798,42 +1054,40 @@
     $$(".campo.con-error").forEach(function(c){ c.classList.remove("con-error"); });
   }
   function marcarError(campo){ if(campo) campo.classList.add("con-error"); }
+  function estaOculto(el){
+    for(var n = el; n && n.nodeType === 1 && !n.classList.contains("estancia"); n = n.parentElement){
+      if(n.style && n.style.display === "none") return true;
+      if(n.classList.contains("condicional") && !n.classList.contains("visible")) return true;
+    }
+    return false;
+  }
   function validar(){
     limpiarErrores();
     var faltan = 0, primero = null;
-    function fallo(el){
+    function fallo(campo){
       faltan++;
-      var campo = el.closest(".campo");
       marcarError(campo);
       if(!primero) primero = campo;
     }
     var cli = $("#t-cliente");
-    if(!cli.value.trim()) fallo(cli);
+    if(!cli.value.trim()){ abrirTrabajo(); fallo(cli.closest(".campo")); }
 
     $$(".estancia", lista).forEach(function(sec){
+      var clave = claveArticulo(valorChips(sec, "articulo"));
+      var antes = faltan;
       $$("[data-req='1']", sec).forEach(function(campo){
-        var inp = $("input[type=text], input[type=number]", campo);
+        if(estaOculto(campo)) return;
+        var reqno = (campo.getAttribute("data-reqno") || "").split(" ");
+        if(clave && reqno.indexOf(clave) !== -1) return;
         var chips = $(".chips", campo);
         if(chips){
-          var f = chips.getAttribute("data-chips");
-          if(!valorChips(sec, f)){
-            marcarError(campo);
-            faltan++;
-            if(!primero) primero = campo;
-          }
-        }else if(inp && !inp.value.trim()){
-          fallo(inp);
+          if(!valorChips(sec, chips.getAttribute("data-chips"))) fallo(campo);
+        }else{
+          var inp = $("input[type=text], input[type=number]", campo);
+          if(inp && !inp.value.trim()) fallo(campo);
         }
       });
-      var art = valorChips(sec, "articulo");
-      if(art === "Estor enrollable" || art === "Estor exterior"){
-        ["mando","salida"].forEach(function(f){
-          if(!valorChips(sec, f)){
-            var campo = $(".chips[data-chips="+f+"]", sec).closest(".campo");
-            marcarError(campo); faltan++; primero = primero || campo;
-          }
-        });
-      }
+      if(faltan > antes) plegarEstancia(sec, false);
     });
 
     if(faltan > 0 && primero){
@@ -842,6 +1096,7 @@
     }
     return faltan === 0;
   }
+
   var tAviso = null;
   function avisar(msg){
     var a = $("#aviso");
@@ -851,22 +1106,81 @@
     tAviso = setTimeout(function(){ a.classList.remove("visible"); }, 4500);
   }
 
+  /* ---------- líneas de cada estancia (PDF y txt) ---------- */
+  function resumenEstancia(e){
+    var k = claveArticulo(e.articulo);
+    var art = e.articulo === "Otro" ? (e.articuloOtro || "Otro") : e.articulo;
+    var L = [], dest = [];
+    L.push({uds:true, t:(e.unidades || "1") + " " + String(art).toUpperCase()});
+
+    if(k === "cortina"){
+      if(e.vueloM) L.push({t:"VUELO: " + num(e.vueloM) + " m" + (e.vueloTipo ? " (" + e.vueloTipo.toUpperCase() + ")" : "")});
+      else if(e.vueloTipo) L.push({t:"VUELO " + e.vueloTipo.toUpperCase()});
+      if(e.cinta) L.push({t:"CINTA: " + e.cinta.toUpperCase()});
+      if(e.altoST) L.push({t:"ALTO S/T: " + num(e.altoST) + " cm"});
+      if(e.altoTejido) L.push({t:"ALTO TEJIDO: " + num(e.altoTejido) + " cm"});
+    }else if(k === "visillo"){
+      if(e.cejilla) L.push({t:"CON CEJILLA " + e.cejilla.toUpperCase()});
+    }else if(k === "vertical"){
+      if(e.lama) L.push({t:"LAMA DE " + num(e.lama) + " mm"});
+      if(e.mando) L.push({t:"MANDO A LA " + e.mando.toUpperCase()});
+      if(e.apertura){
+        L.push({t:"APERTURA: " + (e.apertura === "Centro a extremos" ? "DEL CENTRO A LOS EXTREMOS" : "A LA " + e.apertura.toUpperCase())});
+      }
+    }else if(k === "enagua"){
+      if(e.mesaAncho){
+        var med = e.forma === "Redonda" ? ("Ø " + num(e.mesaAncho) + " cm")
+                : e.forma === "Cuadrada" ? (num(e.mesaAncho) + " × " + num(e.mesaAncho) + " cm")
+                : (num(e.mesaAncho) + " × " + num(e.mesaLargo) + " cm");
+        L.push({t:"MESA " + (e.forma || "").toUpperCase() + ": " + med});
+      }
+      if(e.altoEnagua) L.push({t:"ALTO DE LA ENAGUA: " + num(e.altoEnagua) + " cm"});
+      if(e.tipoEnagua) L.push({t:"ENAGUA " + e.tipoEnagua.toUpperCase()});
+      var c = calculoEnagua(e);
+      if(c){
+        dest.push("MEDIDAS DE LA ENAGUA: " + (e.forma === "Redonda" ? "Ø " + num(c.a) + " cm" : num(c.a) + " × " + num(c.h) + " cm"));
+      }else if(e.tipoEnagua === "De machos"){
+        L.push({t:"MEDIDAS DE LA ENAGUA DE MACHOS: CALCULAR A MANO"});
+      }
+    }else if(k !== "riel"){
+      if(e.mando) L.push({t:"MANDO A LA " + e.mando.toUpperCase()});
+      if(e.salida) L.push({t:"SALIDA " + e.salida.toUpperCase()});
+      if(e.motor && e.motor !== "No"){
+        var m = "MOTORIZADO " + e.motor.replace("Con ", "CON ").toUpperCase();
+        if(e.motorLado) m += " (" + e.motorLado.toUpperCase() + ")";
+        L.push({t:m});
+      }
+      if(e.tubo) L.push({t:"TUBO DE " + e.tubo});
+      if(e.mecColor) L.push({t:"MECANISMO COLOR " + e.mecColor.toUpperCase()});
+      if(e.soportes) L.push({t:"SOPORTE: " + e.soportes.toUpperCase()});
+      if(e.guias === "Sí"){
+        L.push({t:"CON GUÍAS PARA EXTERIOR" + (e.guiasDet ? " (" + e.guiasDet.toUpperCase() + ")" : "")});
+      }
+    }
+    return {lineas:L, destacados:dest};
+  }
+
   /* ---------- impresión ---------- */
-  function esquemaPrintHTML(a, h){
+  function esquemaPrintHTML(d){
+    var a = d.a, h = d.h;
     var MAXmm = 70, MINmm = 24;
     var w = 55, ht = 42;
     if(a > 0 && h > 0){
       if(a >= h){ w = MAXmm; ht = Math.max(MINmm, Math.round(MAXmm * h / a)); }
       else{ ht = MAXmm; w = Math.max(MINmm, Math.round(MAXmm * a / h)); }
     }
-    return '<div class="p-esq"><div class="zona" style="width:'+(w+22)+'mm">' +
-      '<div class="cota-h" style="width:'+w+'mm"><span class="lin"></span><span class="val">'+esc(a)+' cm</span></div>' +
+    var radio = radioForma(d.forma);
+    var estiloRect = "width:" + w + "mm;height:" + ht + "mm;border-radius:" + radio +
+                     (d.sinBarra ? ";border-top-width:1.5pt" : "");
+    return '<div class="p-esq"><div class="zona" style="width:' + (w + 22) + 'mm">' +
+      '<div class="cota-h" style="width:' + w + 'mm"><span class="lin"></span><span class="val">' + esc(a > 0 ? num(a) : "—") + ' cm</span></div>' +
       '<div class="esq-fila">' +
-        '<div class="rect" style="width:'+w+'mm;height:'+ht+'mm"></div>' +
-        '<div class="cota-v" style="height:'+ht+'mm"><span class="lin"></span><span class="val">'+esc(h)+' cm<br><span class="alto-tag">ALTO</span></span></div>' +
+        '<div class="rect" style="' + estiloRect + '"></div>' +
+        '<div class="cota-v" style="height:' + ht + 'mm"><span class="lin"></span><span class="val">' + esc(h > 0 ? num(h) : "—") + ' cm<br><span class="alto-tag">ALTO</span></span></div>' +
       '</div>' +
     '</div></div>';
   }
+
 
   function construirPrint(){
     var s = estado();
@@ -874,32 +1188,34 @@
     var total = s.estancias.length;
     var html = "";
     s.estancias.forEach(function(e, i){
-      var articulo = e.articulo === "Otro" ? (e.articuloOtro || "Otro") : e.articulo;
-      var lineas = [];
-      lineas.push('<div class="uds">' + esc(e.unidades || "1") + " " + esc(articulo.toUpperCase()) + "</div>");
-      if(e.mando) lineas.push("<div>MANDO A LA " + esc(e.mando.toUpperCase()) + "</div>");
-      if(e.salida) lineas.push("<div>SALIDA " + esc(e.salida.toUpperCase()) + "</div>");
-      if(e.motor && e.motor !== "No"){
-        var m = "MOTORIZADO " + e.motor.replace("Con ","CON ").toUpperCase();
-        if(e.motorLado) m += " (" + esc(e.motorLado.toUpperCase()) + ")";
-        lineas.push("<div>" + m + "</div>");
-      }
-      if(e.tubo) lineas.push("<div>TUBO DE " + esc(e.tubo) + "</div>");
-      if(e.mecColor) lineas.push("<div>MECANISMO COLOR " + esc(e.mecColor.toUpperCase()) + "</div>");
-      if(e.soportes) lineas.push("<div>SOPORTE: " + esc(e.soportes.toUpperCase()) + "</div>");
-      if(e.guias === "Sí"){
-        lineas.push("<div>CON GUÍAS PARA EXTERIOR" + (e.guiasDet ? " (" + esc(e.guiasDet.toUpperCase()) + ")" : "") + "</div>");
-      }
+      var k = claveArticulo(e.articulo);
+      var r = resumenEstancia(e);
+      var d = dimsEstancia(e);
+      var lineas = r.lineas.map(function(l){
+        return '<div' + (l.uds ? ' class="uds"' : '') + '>' + esc(l.t) + "</div>";
+      });
+
+      var destacados = r.destacados.map(function(txt){
+        return '<div class="p-tejido"><b>' + esc(txt) + "</b></div>";
+      }).join("");
+
+      var tejidoBox = (e.tejido || e.color || e.proveedor)
+        ? '<div class="p-tejido">TEJIDO <b>' + esc(e.tejido) + "</b> · COLOR <b>" + esc(e.color) + "</b> · DE <b>" + esc(e.proveedor) + "</b></div>"
+        : "";
 
       var extras = "";
-      if(e.metros) extras += '<div class="p-extra">METROS DE TELA: ' + esc(e.metros) + " m</div>";
+      if(e.metros) extras += '<div class="p-extra">METROS DE TELA: ' + esc(num(e.metros)) + " m</div>";
       if(e.riel === "Sí"){
-        var r = [];
-        if(e.rielTipo) r.push(esc(e.rielTipo.toUpperCase()));
-        if(e.rielMedida) r.push(esc(e.rielMedida) + " cm");
-        if(e.rielColor) r.push("COLOR " + esc(e.rielColor.toUpperCase()));
-        extras += '<div class="p-extra">RIEL / BARRA: ' + (r.join(" · ") || "SÍ") + "</div>";
+        var rr = [];
+        if(e.rielTipo) rr.push(esc(e.rielTipo.toUpperCase()));
+        if(e.rielMedida) rr.push(esc(num(e.rielMedida)) + " cm");
+        if(e.rielColor) rr.push("COLOR " + esc(e.rielColor.toUpperCase()));
+        extras += '<div class="p-extra">RIEL / BARRA: ' + (rr.join(" · ") || "SÍ") + "</div>";
       }
+
+      var esquema = (k !== "riel" && (d.a > 0 || d.h > 0))
+        ? '<div class="p-medida-label">' + esc(d.etq || "MEDIDAS") + "</div>" + esquemaPrintHTML(d)
+        : "";
 
       html +=
         '<div class="pag">' +
@@ -910,10 +1226,10 @@
             "</span>" +
           "</div>" +
           '<div class="p-estancia">' + esc(e.estancia || "—") + "</div>" +
-          '<div class="p-medida-label">' + esc(e.tipoAncho || "ANCHO") + "</div>" +
-          esquemaPrintHTML(e.ancho || "—", e.alto || "—") +
+          esquema +
           '<div class="p-lineas">' + lineas.join("") + "</div>" +
-          '<div class="p-tejido">TEJIDO <b>' + esc(e.tejido) + "</b> · COLOR <b>" + esc(e.color) + "</b> · DE <b>" + esc(e.proveedor) + "</b></div>" +
+          destacados +
+          tejidoBox +
           extras +
           (e.obs ? '<div class="p-obs"><b>Observaciones:</b> ' + esc(e.obs) + "</div>" : "") +
           '<div class="p-pie">' +
@@ -928,6 +1244,7 @@
     });
     $("#printRoot").innerHTML = html;
   }
+
 
   /* ---------- eventos ---------- */
   document.getElementById("btnAnadir").addEventListener("click", function(){
@@ -969,7 +1286,14 @@
 
   lista.addEventListener("click", function(ev){
     var b = ev.target.closest("button");
-    if(!b) return;
+    if(!b){
+      var cab = ev.target.closest(".cab");
+      if(cab){
+        var s = cab.closest(".estancia");
+        plegarEstancia(s, !s.classList.contains("plegada"));
+      }
+      return;
+    }
     var sec = b.closest(".estancia");
     if(b.classList.contains("borrar")){
       var nombre = $("[data-field=estancia]", sec).value.trim();
@@ -988,14 +1312,21 @@
 
   document.body.addEventListener("input", function(ev){
     var sec = ev.target.closest(".estancia");
-    if(sec && (ev.target.getAttribute("data-field") === "ancho" || ev.target.getAttribute("data-field") === "alto")){
+    if(sec){
       refrescarEsquema(sec);
+      refrescarCalculo(sec);
+      if(ev.target.getAttribute("data-field") === "estancia") refrescarTitulo(sec);
     }
     guardarLuego();
   });
   document.body.addEventListener("change", function(ev){
     var sec = ev.target.closest(".estancia");
-    if(sec) refrescarCondicionales(sec);
+    if(sec){
+      refrescarCondicionales(sec);
+      refrescarArticulo(sec);
+      refrescarEsquema(sec);
+      refrescarCalculo(sec);
+    }
     guardarLuego();
   });
 
@@ -1031,30 +1362,27 @@
     L.push("");
 
     s.estancias.forEach(function(e, i){
-      var art = e.articulo === "Otro" ? (e.articuloOtro || "Otro") : e.articulo;
+      var r = resumenEstancia(e);
+      var d = dimsEstancia(e);
+      var k = claveArticulo(e.articulo);
       L.push("--------------------------------------");
       L.push((i+1) + ". " + (e.estancia || "SIN ESTANCIA").toUpperCase());
       L.push("--------------------------------------");
-      L.push((e.unidades || "1") + " " + String(art).toUpperCase());
-      L.push((e.tipoAncho || "ANCHO") + ": " + (e.ancho || "—") + " cm   ·   ALTO: " + (e.alto || "—") + " cm");
-      if(e.mando)  L.push("Mando a la " + e.mando.toLowerCase());
-      if(e.salida) L.push("Salida " + e.salida.toLowerCase());
-      if(e.motor && e.motor !== "No"){
-        L.push("Motorizado " + e.motor.toLowerCase().replace("con ", "con ") +
-               (e.motorLado ? " (" + e.motorLado + ")" : ""));
+      r.lineas.forEach(function(l){ L.push(l.t); });
+      if(k !== "riel" && k !== "enagua" && (d.a > 0 || d.h > 0)){
+        L.push((d.etq || "MEDIDAS") + ": " + (num(d.a) || "—") + " cm   ·   ALTO: " + (num(d.h) || "—") + " cm");
       }
-      if(e.tubo)      L.push("Tubo de " + e.tubo);
-      if(e.mecColor)  L.push("Mecanismo color " + e.mecColor.toLowerCase());
-      if(e.soportes)  L.push("Soporte: " + e.soportes);
-      if(e.guias === "Sí") L.push("Con guías para exterior" + (e.guiasDet ? " (" + e.guiasDet + ")" : ""));
-      L.push("Tejido: " + (e.tejido || "—") + "  ·  Color: " + (e.color || "—") + "  ·  De: " + (e.proveedor || "—"));
-      if(e.metros) L.push("Metros de tela: " + e.metros + " m");
+      r.destacados.forEach(function(t2){ L.push(">>> " + t2); });
+      if(e.tejido || e.color || e.proveedor){
+        L.push("Tejido: " + (e.tejido || "—") + "  ·  Color: " + (e.color || "—") + "  ·  De: " + (e.proveedor || "—"));
+      }
+      if(e.metros) L.push("Metros de tela: " + num(e.metros) + " m");
       if(e.riel === "Sí"){
-        var r = [];
-        if(e.rielTipo)   r.push(e.rielTipo);
-        if(e.rielMedida) r.push(e.rielMedida + " cm");
-        if(e.rielColor)  r.push("color " + e.rielColor);
-        L.push("Riel / barra: " + (r.join(" · ") || "sí"));
+        var rr = [];
+        if(e.rielTipo)   rr.push(e.rielTipo);
+        if(e.rielMedida) rr.push(num(e.rielMedida) + " cm");
+        if(e.rielColor)  rr.push("color " + e.rielColor);
+        L.push("Riel / barra: " + (rr.join(" · ") || "sí"));
       }
       if(e.obs) L.push("Observaciones: " + e.obs);
       L.push("");
@@ -1170,6 +1498,13 @@
     });
     s.estancias.forEach(function(e){ nuevaEstancia(e); });
     if(s.estancias.length === 0) nuevaEstancia();
+    if(s.estancias.length > 1){
+      $$(".estancia", lista).forEach(function(x){ plegarEstancia(x, true); });
+    }
+    if(s.trabajo.cliente){
+      $("#bloqueTrabajo").classList.add("plegada");
+      $("#togTrabajo").classList.add("cerrado");
+    }
     limpiarErrores();
     guardar();
     $("#detBorrador").open = false;

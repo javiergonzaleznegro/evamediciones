@@ -3,7 +3,7 @@
    Estrategia: primero internet (para recibir actualizaciones),
    y si no hay red, la copia guardada. */
 
-const CACHE = "eva-medidas-v1.3.1";
+const CACHE = "eva-medidas-v1.3.3";
 const ARCHIVOS = [
   "./",
   "./index.html",

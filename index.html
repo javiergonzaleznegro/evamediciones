@@ -177,49 +177,12 @@
   .estancia .cab button:active{ background:var(--suave); }
   .estancia .cab button.borrar{ color:var(--error); border-color:#d9a9a3; }
 
-  /* ===== Esquema de cotas ===== */
-  .esquema{ display:flex; justify-content:center; padding:0.2rem 0 1rem; overflow:hidden; }
-  .esquema .zona{ display:inline-block; text-align:center; max-width:100%; box-sizing:content-box; }
-  .cota-h{ position:relative; height:1.5rem; height:min(1.5rem, 30px); margin:0 auto 0.2rem; }
-  .cota-h .lin{ position:absolute; left:0; right:0; top:50%; border-top:2px solid var(--azul); }
-  .cota-h .lin::before, .cota-h .lin::after{
-    content:""; position:absolute; top:-5px; border:5px solid transparent;
-  }
-  .cota-h .lin::before{ left:-1px; border-right-color:var(--azul); border-left:0; }
-  .cota-h .lin::after{ right:-1px; border-left-color:var(--azul); border-right:0; }
-  .cota-h .val{
-    position:relative; z-index:1; background:#fff; padding:0 0.4rem;
-    font-size:1.05rem; font-size:min(1.05rem, 21px);
-    font-weight:800; color:var(--azul); white-space:nowrap;
-  }
-  .esq-fila{ display:flex; align-items:stretch; justify-content:center; }
-  .rect{ border:3px solid var(--tinta); background:var(--suave); border-top-width:0.4rem; }
-  .cota-v{ position:relative; width:1.5rem; width:min(1.5rem, 30px); margin-left:2px; }
-  .cota-v .lin{ position:absolute; top:0; bottom:0; left:50%; border-left:2px solid var(--azul); }
-  .cota-v .lin::before, .cota-v .lin::after{
-    content:""; position:absolute; left:-5px; border:5px solid transparent;
-  }
-  .cota-v .lin::before{ top:-1px; border-bottom-color:var(--azul); border-top:0; }
-  .cota-v .lin::after{ bottom:-1px; border-top-color:var(--azul); border-bottom:0; }
-  .cota-v .val{
-    position:absolute; top:50%; left:1.1rem; left:min(1.1rem, 22px); transform:translateY(-50%);
-    background:#fff; padding:0.1rem 0.2rem; white-space:nowrap;
-    font-size:1.05rem; font-size:min(1.05rem, 21px);
-    font-weight:800; color:var(--azul);
-  }
-  .esquema .tip{ font-size:0.85rem; font-size:min(0.85rem, 15px); color:var(--gris); margin-top:0.4rem; }
+  /* ===== Esquema (SVG) ===== */
+  .esquema{ display:flex; flex-direction:column; align-items:center; padding:0.2rem 0 1rem; overflow:hidden; }
+  .esquema .dibujo{ max-width:100%; line-height:0; }
+  .esquema .dibujo svg{ display:block; max-width:100%; height:auto; }
+  .esquema .tip{ font-size:0.85rem; font-size:min(0.85rem, 15px); color:var(--gris); margin-top:0.4rem; text-align:center; }
 
-  .calculo{
-    border:2px solid var(--azul); border-left-width:0.45rem; border-radius:0.45rem;
-    background:var(--suave); padding:0.6rem 0.8rem; margin:0 0 0.9rem;
-  }
-  .calculo-tit{
-    display:block; font-size:0.85rem; font-weight:700; color:var(--gris);
-    text-transform:uppercase; letter-spacing:.04em;
-  }
-  .calculo-val{ display:block; font-size:1.4rem; font-weight:800; color:var(--azul); }
-  .calculo-nota{ display:block; font-size:0.8rem; color:var(--gris); margin-top:0.2rem; }
-  .rect.sin-barra{ border-top-width:3px; }
   .condicional{ display:none; }
   .condicional.visible{ display:block; }
   .subgrupo{ border-left:0.25rem solid var(--suave); padding-left:0.7rem; margin:0 0 0.9rem; }
@@ -312,20 +275,8 @@
       text-align:center; font-size:13pt; font-weight:700; letter-spacing:1pt;
       text-transform:uppercase; color:var(--tinta); margin-bottom:2pt;
     }
-    .p-esq{ display:flex; justify-content:center; margin:0 0 16pt; }
-    .p-esq .zona{ text-align:center; }
-    .p-esq .cota-h{ height:18pt; margin-bottom:2pt; }
-    .p-esq .cota-h .lin{ top:8pt; border-top:1.2pt solid var(--tinta); }
-    .p-esq .cota-h .lin::before{ border-right-color:var(--tinta); top:-5pt; }
-    .p-esq .cota-h .lin::after{ border-left-color:var(--tinta); top:-5pt; }
-    .p-esq .cota-h .val{ font-size:16pt; font-weight:800; color:var(--tinta); background:#fff; }
-    .p-esq .rect{ background:#fff; border:1.5pt solid var(--tinta); border-top-width:4pt; }
-    .p-esq .cota-v{ width:18pt; }
-    .p-esq .cota-v .lin{ left:8pt; border-left:1.2pt solid var(--tinta); }
-    .p-esq .cota-v .lin::before{ border-bottom-color:var(--tinta); left:-5pt; }
-    .p-esq .cota-v .lin::after{ border-top-color:var(--tinta); left:-5pt; }
-    .p-esq .cota-v .val{ left:13pt; font-size:16pt; font-weight:800; color:var(--tinta); }
-    .p-esq .alto-tag{ font-size:10pt; font-weight:600; color:var(--gris); }
+    .p-esq{ display:flex; justify-content:center; margin:0 0 14pt; }
+    .p-esq svg{ display:block; }
 
     .p-lineas{ margin:0 0 12pt; }
     .p-lineas div{ margin:0 0 5pt; font-size:14pt; }
@@ -408,7 +359,7 @@
   <div class="botonera">
     <button type="button" id="btnAnadir"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Añadir estancia</button>
     <button type="button" id="btnPdf"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h6l5 5v11a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M14 3v5h5"/><path d="M12 11v6M9.5 14.5 12 17l2.5-2.5"/></svg>Generar PDF</button>
-    <p class="ayuda-pdf">Al pulsar «Generar PDF»: elegir «Guardar como PDF» y después compartir por WhatsApp.</p>
+    <p class="ayuda-pdf">Al pulsar «Generar PDF»: elegir «Guardar como PDF» y compartir por WhatsApp. Tamaño de papel: A4 (si sale «Carta», elegir A4 una vez y se queda).</p>
   </div>
 
   <h2><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h10M10 7l5 5-5 5"/><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3"/></svg>Pasar el trabajo a otro móvil o tablet</h2>
@@ -432,7 +383,7 @@
 
     <hr class="sep">
     <button type="button" id="btnNuevo"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 6"/><path d="M20 4v6h-6"/></svg>Empezar un trabajo nuevo</button>
-    <p class="version">Toma de medidas · v1.3.1</p>
+    <p class="version">Toma de medidas · v1.3.3</p>
   </div>
 </main>
 
@@ -461,7 +412,6 @@
     </div>
 
     <div class="cuerpo">
-
     <div class="fila">
       <div class="campo" data-req="1">
         <label>Estancia <span class="oblig">*</span></label>
@@ -477,8 +427,9 @@
       <label>Artículo <span class="oblig">*</span></label>
       <div class="chips" data-chips="articulo">
         <input type="radio" value="Estor enrollable" checked><label></label>
-        <input type="radio" value="Estor exterior"><label></label>
         <input type="radio" value="Cortina noche y día"><label>Noche y día</label>
+        <input type="radio" value="Estor veneciano"><label></label>
+        <input type="radio" value="Estor con varilla"><label></label>
         <input type="radio" value="Cortina o visillo"><label></label>
         <input type="radio" value="Visillo con cejilla"><label></label>
         <input type="radio" value="Cortina vertical"><label></label>
@@ -491,7 +442,7 @@
       </div>
     </div>
 
-    <div class="campo" data-req="1" data-para="estor estorext nochedia">
+    <div class="campo" data-req="1" data-para="estor nochedia veneciano varilla">
       <label>El ancho apuntado es… <span class="oblig">*</span></label>
       <div class="chips" data-chips="tipoAncho">
         <input type="radio" value="ANCHO TEJIDO"><label>del TEJIDO</label>
@@ -499,7 +450,7 @@
       </div>
     </div>
 
-    <div class="fila" data-para="estor estorext nochedia visillo otro">
+    <div class="fila" data-para="estor nochedia veneciano varilla visillo otro">
       <div class="campo corto" data-req="1" data-reqno="otro">
         <label>Ancho (cm) <span class="oblig">*</span></label>
         <input type="number" data-field="ancho" inputmode="decimal" min="1" step="0.5">
@@ -514,6 +465,10 @@
       <div class="campo corto" data-req="1">
         <label>Ancho mecanismo (cm) <span class="oblig">*</span></label>
         <input type="number" data-field="anchoMec" inputmode="decimal" min="1" step="0.5">
+      </div>
+      <div class="campo corto" data-para="cortina">
+        <label>Alto suelo/techo (cm)</label>
+        <input type="number" data-field="altoST" inputmode="decimal" min="1" step="0.5">
       </div>
       <div class="campo corto" data-req="1" data-para="vertical">
         <label>Alto terminado (cm) <span class="oblig">*</span></label>
@@ -539,10 +494,6 @@
         <label>Cinta (modelo)</label>
         <input type="text" data-field="cinta" placeholder="p. ej. fruncidora 5 bolsas" autocomplete="off">
       </div>
-      <div class="campo corto">
-        <label>Alto S/T (cm)</label>
-        <input type="number" data-field="altoST" inputmode="decimal" min="1" step="0.5">
-      </div>
       <div class="campo corto" data-req="1">
         <label>Alto tejido (cm) <span class="oblig">*</span></label>
         <input type="number" data-field="altoTejido" inputmode="decimal" min="1" step="0.5">
@@ -550,10 +501,27 @@
     </div>
 
     <div class="campo" data-req="1" data-para="visillo">
-      <label>Cejilla <span class="oblig">*</span></label>
-      <div class="chips" data-chips="cejilla">
-        <input type="radio" value="Arriba"><label></label>
-        <input type="radio" value="Arriba y abajo"><label></label>
+      <label>Acabado <span class="oblig">*</span></label>
+      <div class="chips" data-chips="acabado">
+        <input type="radio" value="Cejilla y bastilla"><label></label>
+        <input type="radio" value="Bastilla abierta"><label></label>
+      </div>
+    </div>
+    <div class="fila" data-para="visillo">
+      <div class="campo corto" data-req="1">
+        <label>Colocación <span class="oblig">*</span></label>
+        <div class="chips" data-chips="cejilla">
+          <input type="radio" value="Arriba"><label></label>
+          <input type="radio" value="Arriba y abajo"><label></label>
+        </div>
+      </div>
+      <div class="campo corto" data-cej="cejillaCm">
+        <label>Cejilla (cm)</label>
+        <input type="number" data-field="cejillaCm" inputmode="decimal" min="0" step="0.5">
+      </div>
+      <div class="campo corto">
+        <label>Bastilla (cm)</label>
+        <input type="number" data-field="bastillaCm" inputmode="decimal" min="0" step="0.5">
       </div>
     </div>
 
@@ -579,6 +547,7 @@
         <input type="radio" value="Cuadrada"><label></label>
         <input type="radio" value="Rectangular"><label></label>
         <input type="radio" value="Ovalada"><label></label>
+        <input type="radio" value="Canto romo"><label></label>
         <input type="radio" value="Petaca"><label></label>
       </div>
     </div>
@@ -592,8 +561,8 @@
         <input type="number" data-field="mesaLargo" inputmode="decimal" min="1" step="0.5">
       </div>
       <div class="campo corto" data-req="1">
-        <label>Alto de la enagua (cm) <span class="oblig">*</span></label>
-        <input type="number" data-field="altoEnagua" inputmode="decimal" min="1" step="0.5">
+        <label>Alto de la mesa (cm) <span class="oblig">*</span></label>
+        <input type="number" data-field="altoMesa" inputmode="decimal" min="1" step="0.5">
       </div>
     </div>
     <div class="campo" data-req="1" data-para="enagua">
@@ -604,23 +573,19 @@
       </div>
     </div>
     <div class="calculo" data-para="enagua">
-      <span class="calculo-tit">Medidas de la enagua</span>
-      <span class="calculo-val">—</span>
-      <span class="calculo-nota">Cálculo (capa): medida de la mesa + 2 × alto de la enagua − 4 cm</span>
+      <span class="calculo-tit">Alto de la enagua</span>
+      <span class="calculo-val calculo-alto">—</span>
+      <span class="calculo-tit" style="margin-top:0.5rem">Medidas de la enagua</span>
+      <span class="calculo-val calculo-med">—</span>
+      <span class="calculo-nota">Alto de la enagua = alto de la mesa − 2 cm · Medidas (capa) = medida de la mesa + 2 × alto de la mesa − 4 cm</span>
     </div>
 
-    <div class="esquema" data-para="estor estorext nochedia cortina visillo vertical enagua otro">
-      <div class="zona">
-        <div class="cota-h"><span class="lin"></span><span class="val v-ancho">—</span></div>
-        <div class="esq-fila">
-          <div class="rect"></div>
-          <div class="cota-v"><span class="lin"></span><span class="val v-alto">—</span></div>
-        </div>
-        <div class="tip">Esquema orientativo</div>
-      </div>
+    <div class="esquema" data-para="estor nochedia veneciano varilla cortina visillo vertical enagua otro">
+      <div class="dibujo"></div>
+      <div class="tip">Esquema orientativo</div>
     </div>
 
-    <div class="fila" data-para="estor estorext nochedia vertical">
+    <div class="fila" data-para="estor nochedia veneciano varilla vertical">
       <div class="campo corto" data-req="1">
         <label>Mando <span class="oblig">*</span></label>
         <div class="chips" data-chips="mando">
@@ -628,7 +593,7 @@
           <input type="radio" value="Derecha"><label></label>
         </div>
       </div>
-      <div class="campo corto" data-req="1" data-para="estor estorext nochedia">
+      <div class="campo corto" data-req="1" data-para="estor nochedia">
         <label>Salida <span class="oblig">*</span></label>
         <div class="chips" data-chips="salida">
           <input type="radio" value="Delantera"><label></label>
@@ -637,7 +602,23 @@
       </div>
     </div>
 
-    <div class="campo" data-para="estor estorext nochedia">
+    <div class="fila" data-para="veneciano">
+      <div class="campo corto">
+        <label>Número de cintas</label>
+        <input type="number" data-field="cintas" inputmode="numeric" min="1" step="1">
+      </div>
+    </div>
+    <div class="campo" data-para="veneciano varilla">
+      <label>Tipo de mecanismo</label>
+      <div class="chips" data-chips="tipoMec">
+        <input type="radio" value="" checked><label>Sin indicar</label>
+        <input type="radio" value="Cordón"><label></label>
+        <input type="radio" value="Cadeneta"><label></label>
+        <input type="radio" value="Oculto"><label></label>
+      </div>
+    </div>
+
+    <div class="campo" data-para="estor nochedia">
       <label>Motorizado</label>
       <div class="chips" data-chips="motor">
         <input type="radio" value="No" checked><label></label>
@@ -649,16 +630,17 @@
       </div>
     </div>
 
-    <div class="fila" data-para="estor estorext nochedia">
-      <div class="campo corto">
+    <div class="fila" data-para="estor nochedia vertical">
+      <div class="campo corto" data-para="estor nochedia">
         <label>Tubo</label>
         <div class="chips" data-chips="tubo">
           <input type="radio" value="" checked><label>Sin indicar</label>
-          <input type="radio" value="25 mm"><label>25 mm</label>
+          <input type="radio" value="18 mm"><label>18 mm</label>
           <input type="radio" value="28 mm"><label>28 mm</label>
+          <input type="radio" value="43 mm"><label>43 mm</label>
         </div>
       </div>
-      <div class="campo corto">
+      <div class="campo corto" data-para="estor nochedia vertical">
         <label>Color mecanismo</label>
         <div class="chips" data-chips="mecColor">
           <input type="radio" value="" checked><label>Sin indicar</label>
@@ -668,12 +650,12 @@
       </div>
     </div>
 
-    <div class="fila" data-para="estor estorext nochedia">
+    <div class="fila" data-para="estor nochedia veneciano varilla">
       <div class="campo">
         <label>Soportes</label>
         <input type="text" data-field="soportes" placeholder="p. ej. soporte mini Mérida color blanco" autocomplete="off">
       </div>
-      <div class="campo corto">
+      <div class="campo corto" data-para="estor nochedia">
         <label>Guías exterior</label>
         <div class="chips" data-chips="guias">
           <input type="radio" value="No" checked><label></label>
@@ -681,15 +663,15 @@
         </div>
       </div>
     </div>
-    <div class="condicional subgrupo" data-cond="guias-det" data-para="estor estorext nochedia">
+    <div class="condicional subgrupo" data-cond="guias-det" data-para="estor nochedia">
       <div class="campo">
         <label>Detalle de las guías</label>
         <input type="text" data-field="guiasDet" placeholder="p. ej. pared / pared" autocomplete="off">
       </div>
     </div>
 
-    <h2 style="margin-top:0.6rem" data-para="estor estorext nochedia cortina visillo vertical enagua otro">Tejido</h2>
-    <div class="fila" data-para="estor estorext nochedia cortina visillo vertical enagua otro">
+    <h2 style="margin-top:0.6rem" data-para="estor nochedia veneciano varilla cortina visillo vertical enagua otro">Tejido</h2>
+    <div class="fila" data-para="estor nochedia veneciano varilla cortina visillo vertical enagua otro">
       <div class="campo" data-req="1" data-reqno="otro">
         <label>Modelo / referencia <span class="oblig">*</span></label>
         <input type="text" data-field="tejido" placeholder="p. ej. Basicscreen, Oslo, PE 1000" autocomplete="off">
@@ -699,7 +681,7 @@
         <input type="text" data-field="color" placeholder="p. ej. blanco-lino, 22 (gris)" autocomplete="off">
       </div>
     </div>
-    <div class="fila" data-para="estor estorext nochedia cortina visillo vertical enagua otro">
+    <div class="fila" data-para="estor nochedia veneciano varilla cortina visillo vertical enagua otro">
       <div class="campo corto" data-req="1" data-reqno="otro">
         <label>Proveedor <span class="oblig">*</span></label>
         <input type="text" data-field="proveedor" list="dl-proveedores" autocomplete="off">
@@ -710,14 +692,14 @@
       </div>
     </div>
 
-    <div class="campo" data-para="cortina visillo otro riel">
+    <div class="campo" data-para="cortina otro riel">
       <label>Riel o barra</label>
       <div class="chips" data-chips="riel">
         <input type="radio" value="No" checked><label></label>
         <input type="radio" value="Sí"><label></label>
       </div>
     </div>
-    <div class="condicional subgrupo" data-cond="riel-det" data-para="cortina visillo otro riel">
+    <div class="condicional subgrupo" data-cond="riel-det" data-para="cortina otro riel">
       <div class="fila">
         <div class="campo">
           <label>Tipo</label>
@@ -727,9 +709,15 @@
           <label>Medida (cm)</label>
           <input type="number" data-field="rielMedida" inputmode="decimal" min="1" step="0.5">
         </div>
+      </div>
+      <div class="fila">
         <div class="campo corto">
           <label>Color</label>
           <input type="text" data-field="rielColor" autocomplete="off">
+        </div>
+        <div class="campo corto">
+          <label>Proveedor</label>
+          <input type="text" data-field="rielProveedor" list="dl-proveedores" autocomplete="off">
         </div>
       </div>
     </div>
@@ -820,8 +808,9 @@
   function claveArticulo(v){
     switch(String(v || "")){
       case "Estor enrollable": return "estor";
-      case "Estor exterior": return "estorext";
       case "Cortina noche y día": return "nochedia";
+      case "Estor veneciano": return "veneciano";
+      case "Estor con varilla": return "varilla";
       case "Cortina o visillo": return "cortina";
       case "Visillo con cejilla": return "visillo";
       case "Cortina vertical": return "vertical";
@@ -831,6 +820,7 @@
       default: return "otro";
     }
   }
+
   function refrescarArticulo(sec){
     var clave = claveArticulo(valorChips(sec, "articulo"));
     $$("[data-para]", sec).forEach(function(el){
@@ -846,11 +836,16 @@
               forma === "Cuadrada" ? "Lado de la mesa (cm)" : "Ancho de la mesa (cm)";
       labA.innerHTML = t + ' <span class="oblig">*</span>';
     }
+    if(clave === "visillo"){
+      var abierta = valorChips(sec, "acabado") === "Bastilla abierta";
+      $("[data-cej=cejillaCm]", sec).style.display = abierta ? "none" : "";
+    }
     if(clave === "riel" && valorChips(sec, "riel") !== "Sí"){
       var r = $$(".chips[data-chips=riel] input", sec).filter(function(x){ return x.value === "Sí"; })[0];
       if(r){ r.checked = true; marcado[r.name] = "Sí"; refrescarCondicionales(sec); }
     }
   }
+
 
   /* ---------- números y cálculo de la enagua ---------- */
   function num(v){
@@ -858,95 +853,189 @@
     if(!(n > 0)) return "";
     return String(Math.round(n * 10) / 10);
   }
+  function altoEnaguaDe(e){
+    var alto = parseFloat(e.altoMesa);
+    return alto > 2 ? alto - 2 : NaN;
+  }
   function calculoEnagua(e){
     if(e.tipoEnagua !== "De capa") return null;
-    var alto = parseFloat(e.altoEnagua), a = parseFloat(e.mesaAncho), l = parseFloat(e.mesaLargo);
+    var alto = parseFloat(e.altoMesa), a = parseFloat(e.mesaAncho), l = parseFloat(e.mesaLargo);
     if(!(alto > 0) || !(a > 0)) return null;
     var extra = 2 * alto - 4;
     if(e.forma === "Redonda" || e.forma === "Cuadrada") return {a: a + extra, h: a + extra};
     if(!(l > 0)) return null;
     return {a: a + extra, h: l + extra};
   }
+
   function dimsEstancia(e){
     var k = claveArticulo(e.articulo);
     function f(v){ var n = parseFloat(v); return n > 0 ? n : NaN; }
-    if(k === "cortina") return {a: f(e.anchoMec), h: f(e.altoTejido) || f(e.altoST), etq: "ANCHO MECANISMO"};
-    if(k === "vertical") return {a: f(e.anchoMec), h: f(e.altoTerm), etq: "ANCHO MECANISMO"};
-    if(k === "visillo") return {a: f(e.ancho), h: f(e.alto), etq: "ANCHO TEJIDO"};
-    if(k === "enagua"){
-      var c = calculoEnagua(e);
-      if(c) return {a: c.a, h: c.h, etq: "MEDIDAS DE LA ENAGUA", forma: e.forma, sinBarra: true};
-      var esR = (e.forma === "Redonda" || e.forma === "Cuadrada");
-      return {a: f(e.mesaAncho), h: esR ? f(e.mesaAncho) : f(e.mesaLargo),
-              etq: "MEDIDAS DE LA MESA", forma: e.forma, sinBarra: true};
+    var d = {a:NaN, h:NaN, etq:"", cotaSup:"", cotaLat:"", barra:true, partido:false, forma:"", cejilla:null, pie:""};
+    if(k === "riel"){ d.barra = false; return d; }
+    if(k === "cortina"){
+      d.a = f(e.anchoMec); d.h = f(e.altoTejido) || f(e.altoST);
+      d.etq = "ANCHO MECANISMO" + (d.a > 0 ? " " + num(d.a) + " cm" : "");
+      d.cotaSup = f(e.vueloM) ? ("VUELO " + num(e.vueloM) + " m") : (d.a > 0 ? num(d.a) + " cm" : "");
+      d.cotaLat = d.h > 0 ? num(d.h) + " cm" : "";
+      d.partido = (e.vueloTipo === "Partido");
+      return d;
     }
-    if(k === "riel") return {a: NaN, h: NaN, etq: ""};
-    return {a: f(e.ancho), h: f(e.alto), etq: e.tipoAncho || "ANCHO"};
+    if(k === "vertical"){
+      d.a = f(e.anchoMec); d.h = f(e.altoTerm);
+      d.etq = "ANCHO MECANISMO";
+      d.cotaSup = d.a > 0 ? num(d.a) + " cm" : ""; d.cotaLat = d.h > 0 ? num(d.h) + " cm" : "";
+      return d;
+    }
+    if(k === "visillo"){
+      d.a = f(e.ancho); d.h = f(e.alto);
+      d.etq = "ANCHO TEJIDO";
+      d.cotaSup = d.a > 0 ? num(d.a) + " cm" : ""; d.cotaLat = d.h > 0 ? num(d.h) + " cm" : "";
+      d.barra = false;
+      d.cejilla = {pos:e.cejilla || "", acabado:e.acabado || "", cej:f(e.cejillaCm), bas:f(e.bastillaCm)};
+      return d;
+    }
+    if(k === "enagua"){
+      var esR = (e.forma === "Redonda" || e.forma === "Cuadrada");
+      d.a = f(e.mesaAncho); d.h = esR ? f(e.mesaAncho) : f(e.mesaLargo);
+      d.forma = e.forma || ""; d.barra = false;
+      d.etq = "TAPA DE LA MESA";
+      d.cotaSup = d.a > 0 ? ((e.forma === "Redonda" ? "Ø " : "") + num(d.a) + " cm") : "";
+      d.cotaLat = (e.forma === "Redonda") ? "" : (d.h > 0 ? num(d.h) + " cm" : "");
+      var ae = altoEnaguaDe(e);
+      d.pie = ae > 0 ? ("Alto de la enagua: " + num(ae) + " cm") : "";
+      return d;
+    }
+    d.a = f(e.ancho); d.h = f(e.alto);
+    d.etq = e.tipoAncho || "ANCHO";
+    d.cotaSup = d.a > 0 ? num(d.a) + " cm" : ""; d.cotaLat = d.h > 0 ? num(d.h) + " cm" : "";
+    if(k === "otro") d.barra = false;
+    return d;
   }
-  function radioForma(forma){
-    if(forma === "Redonda" || forma === "Ovalada") return "50%";
-    if(forma === "Petaca") return "12%";
-    return "0";
+
+  /* Dibujo del esquema en SVG. anchoAttr: px (número) o "95mm". */
+  function dibujoSVG(d, anchoAttr){
+    var AZ = "#0060C0", TINTA = "#14212c", GRIS = "#3f5060", SUAVE = "#eef5fb";
+    var MAXW = 200, MAXH = 150, MIN = 44;
+    var a = d.a > 0 ? d.a : 4, hh = d.h > 0 ? d.h : 3;
+    var w, ht;
+    if(a / hh >= MAXW / MAXH){ w = MAXW; ht = Math.max(MIN, Math.round(MAXW * hh / a)); }
+    else{ ht = MAXH; w = Math.max(MIN, Math.round(MAXH * a / hh)); }
+    var x0 = 12, y0 = 30, x1 = x0 + w, y1 = y0 + ht;
+    var R = d.cotaLat ? 74 : 14;
+    var B = d.pie ? 30 : 12;
+    var VW = x1 + R, VH = y1 + B;
+    var xm = (x0 + x1) / 2, ym = (y0 + y1) / 2;
+    var s = [];
+
+    /* forma */
+    var fill = 'fill="' + SUAVE + '" stroke="' + TINTA + '" stroke-width="2"';
+    if(d.forma === "Redonda" || d.forma === "Ovalada"){
+      s.push('<ellipse cx="' + xm + '" cy="' + ym + '" rx="' + (w/2) + '" ry="' + (ht/2) + '" ' + fill + '/>');
+    }else if(d.forma === "Canto romo"){
+      var rr = Math.round(Math.min(w, ht) * 0.16);
+      s.push('<rect x="' + x0 + '" y="' + y0 + '" width="' + w + '" height="' + ht + '" rx="' + rr + '" ' + fill + '/>');
+    }else if(d.forma === "Petaca"){
+      var b = Math.round(Math.min(w, ht) * 0.11);
+      var path;
+      if(w >= ht){ /* lados largos horizontales: arriba y abajo curvados */
+        path = "M" + x0 + "," + (y0 + b) + " Q" + xm + "," + (y0 - b) + " " + x1 + "," + (y0 + b) +
+               " L" + x1 + "," + (y1 - b) + " Q" + xm + "," + (y1 + b) + " " + x0 + "," + (y1 - b) + " Z";
+      }else{ /* lados largos verticales: izquierda y derecha curvados */
+        path = "M" + (x0 + b) + "," + y0 + " L" + (x1 - b) + "," + y0 +
+               " Q" + (x1 + b) + "," + ym + " " + (x1 - b) + "," + y1 +
+               " L" + (x0 + b) + "," + y1 + " Q" + (x0 - b) + "," + ym + " " + (x0 + b) + "," + y0 + " Z";
+      }
+      s.push('<path d="' + path + '" ' + fill + '/>');
+    }else{
+      s.push('<rect x="' + x0 + '" y="' + y0 + '" width="' + w + '" height="' + ht + '" ' + fill + '/>');
+    }
+    if(d.barra) s.push('<rect x="' + x0 + '" y="' + y0 + '" width="' + w + '" height="6" fill="' + TINTA + '"/>');
+    if(d.partido) s.push('<line x1="' + xm + '" y1="' + (y0 + 2) + '" x2="' + xm + '" y2="' + (y1 - 2) + '" stroke="' + TINTA + '" stroke-width="1.6" stroke-dasharray="5 4"/>');
+
+    /* cejilla y bastilla: arriba, de fuera hacia dentro: cejilla, bastilla; abajo, en espejo */
+    if(d.cejilla && d.cejilla.acabado){
+      var c = d.cejilla, abierta = (c.acabado === "Bastilla abierta");
+      var tCej = "cejilla" + (c.cej > 0 ? " " + num(c.cej) + " cm" : "");
+      var tBas = "bastilla" + (c.bas > 0 ? " " + num(c.bas) + " cm" : "");
+      var tAb  = "bastilla abierta" + (c.bas > 0 ? " " + num(c.bas) + " cm" : "");
+      function lin(y){ s.push('<line x1="' + x0 + '" y1="' + y + '" x2="' + x1 + '" y2="' + y + '" stroke="' + TINTA + '" stroke-width="1.2"/>'); }
+      function txt(y, t){ s.push('<text x="' + (x0 + 4) + '" y="' + y + '" font-size="8.5" fill="' + GRIS + '">' + esc(t) + '</text>'); }
+      if(abierta){ lin(y0 + 12); txt(y0 + 10, tAb); }
+      else{ lin(y0 + 10); txt(y0 + 8, tCej); lin(y0 + 19); txt(y0 + 17, tBas); }
+      if(c.pos === "Arriba y abajo"){
+        if(abierta){ lin(y1 - 12); txt(y1 - 3, tAb); }
+        else{ lin(y1 - 19); txt(y1 - 21, tCej); lin(y1 - 10); txt(y1 - 2, tBas); }
+      }
+    }
+
+    /* cota superior */
+    if(d.cotaSup){
+      var yc = 16;
+      s.push('<line x1="' + (x0 + 5) + '" y1="' + yc + '" x2="' + (x1 - 5) + '" y2="' + yc + '" stroke="' + AZ + '" stroke-width="1.6"/>');
+      s.push('<path d="M' + x0 + ',' + yc + ' l7,-3.5 v7 z M' + x1 + ',' + yc + ' l-7,-3.5 v7 z" fill="' + AZ + '"/>');
+      s.push('<text x="' + xm + '" y="' + (yc - 5) + '" text-anchor="middle" font-size="13" font-weight="700" fill="' + AZ + '">' + esc(d.cotaSup) + '</text>');
+    }
+    /* cota lateral */
+    if(d.cotaLat){
+      var xc = x1 + 12;
+      s.push('<line x1="' + xc + '" y1="' + (y0 + 5) + '" x2="' + xc + '" y2="' + (y1 - 5) + '" stroke="' + AZ + '" stroke-width="1.6"/>');
+      s.push('<path d="M' + xc + ',' + y0 + ' l-3.5,7 h7 z M' + xc + ',' + y1 + ' l-3.5,-7 h7 z" fill="' + AZ + '"/>');
+      s.push('<text x="' + (xc + 7) + '" y="' + (ym + 4.5) + '" font-size="13" font-weight="700" fill="' + AZ + '">' + esc(d.cotaLat) + '</text>');
+    }
+    if(d.pie){
+      s.push('<text x="' + x0 + '" y="' + (y1 + 20) + '" font-size="11" font-weight="600" fill="' + GRIS + '">' + esc(d.pie) + '</text>');
+    }
+
+    var attrs;
+    if(typeof anchoAttr === "number"){
+      attrs = 'width="' + anchoAttr + '" height="' + Math.round(anchoAttr * VH / VW) + '"';
+    }else{
+      var mm = parseFloat(anchoAttr);
+      attrs = 'width="' + mm + 'mm" height="' + (Math.round(mm * VH / VW * 10) / 10) + 'mm"';
+    }
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + VW + ' ' + VH + '" ' + attrs +
+           ' font-family="-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif" role="img">' + s.join("") + '</svg>';
   }
+
   function refrescarCalculo(sec){
     var caja = $(".calculo", sec);
     if(!caja) return;
     var e = leerEstancia(sec);
     if(claveArticulo(e.articulo) !== "enagua") return;
-    var val = $(".calculo-val", caja);
+    var ae = altoEnaguaDe(e);
+    $(".calculo-alto", caja).textContent = ae > 0 ? (num(ae) + " cm") : "Falta el alto de la mesa";
+    var val = $(".calculo-med", caja);
     var c = calculoEnagua(e);
     if(c){
       val.textContent = (e.forma === "Redonda")
         ? ("Ø " + num(c.a) + " cm")
         : (num(c.a) + " × " + num(c.h) + " cm");
     }else if(e.tipoEnagua === "De machos"){
-      val.textContent = "De machos: el cálculo se hace a mano";
+      val.textContent = "De machos: sin fórmula fija, se mide a mano";
     }else{
       val.textContent = "Faltan medidas";
     }
   }
 
 
+
   /* ---------- esquema de cotas ---------- */
   function refrescarEsquema(sec){
     var caja = $(".esquema", sec);
+    if(!caja) return;
     var e = leerEstancia(sec);
+    var k = claveArticulo(e.articulo);
+    if(k === "riel") return;
     var d = dimsEstancia(e);
-    if(!caja || claveArticulo(e.articulo) === "riel") return;
-    var a = d.a, h = d.h;
-    var rect = $(".rect", sec);
-    var zona = $(".esquema .zona", sec);
-    var cotaV = $(".cota-v", sec);
-    var etiqAlto = $(".v-alto", sec);
-    var rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 21;
-
-    rect.style.borderRadius = radioForma(d.forma);
-    rect.classList.toggle("sin-barra", !!d.sinBarra);
-
-    $(".v-ancho", sec).textContent = (a > 0 ? num(a) + " cm" : "—");
-    etiqAlto.textContent = (h > 0 ? num(h) + " cm" : "—");
-
-    var anchoEtiq = etiqAlto.offsetWidth || Math.round(rem * 3);
-    var reserva = Math.min(Math.round(rem * 6),
-                           cotaV.offsetWidth + anchoEtiq + Math.round(rem * 0.6));
-
-    var disp = (caja.clientWidth || sec.clientWidth || 320) - 2;
-    var MAXw = Math.max(Math.round(rem * 2.2), Math.min(Math.round(rem * 8.5), 260, disp - reserva));
-    var MAXh = Math.min(Math.round(rem * 8.5), 240);
-    var MIN  = Math.round(rem * 2);
-
-    var w, ht;
-    if(a > 0 && h > 0){
-      if(a / h >= MAXw / MAXh){ w = MAXw; ht = Math.max(MIN, Math.round(MAXw * h / a)); }
-      else{ ht = MAXh; w = Math.max(MIN, Math.round(MAXh * a / h)); }
-    }else{
-      w = Math.round(MAXw * 0.8); ht = Math.round(MAXh * 0.6);
-    }
-    rect.style.width = w + "px";
-    rect.style.height = ht + "px";
-    $(".cota-h", sec).style.width = w + "px";
-    zona.style.width = Math.min(disp, w + reserva) + "px";
+    var disp = (caja.clientWidth || sec.clientWidth || 320) - 4;
+    var W = Math.max(180, Math.min(disp, 360));
+    $(".dibujo", caja).innerHTML = dibujoSVG(d, W);
+    var tip = "Esquema orientativo";
+    if(k === "cortina" && d.a > 0 && parseFloat(e.vueloM) > 0) tip = "Ancho mecanismo " + num(d.a) + " cm · vuelo " + num(e.vueloM) + " m";
+    if(k === "enagua") tip = "Tapa de la mesa (no la enagua)";
+    $(".tip", caja).textContent = tip;
   }
+
 
 
   /* ---------- pestañas ---------- */
@@ -1004,6 +1093,7 @@
     return o;
   }
   function volcarEstancia(sec, o){
+    if(o.altoMesa == null && o.altoEnagua != null) o.altoMesa = o.altoEnagua;   /* borradores anteriores a v1.3.2 */
     $$("input[data-field]:not([type=radio]), textarea[data-field]", sec).forEach(function(el){
       var f = el.getAttribute("data-field");
       if(o[f] != null) el.value = o[f];
@@ -1114,19 +1204,27 @@
     L.push({uds:true, t:(e.unidades || "1") + " " + String(art).toUpperCase()});
 
     if(k === "cortina"){
+      if(e.altoST) L.push({t:"ALTO SUELO/TECHO: " + num(e.altoST) + " cm"});
       if(e.vueloM) L.push({t:"VUELO: " + num(e.vueloM) + " m" + (e.vueloTipo ? " (" + e.vueloTipo.toUpperCase() + ")" : "")});
       else if(e.vueloTipo) L.push({t:"VUELO " + e.vueloTipo.toUpperCase()});
       if(e.cinta) L.push({t:"CINTA: " + e.cinta.toUpperCase()});
-      if(e.altoST) L.push({t:"ALTO S/T: " + num(e.altoST) + " cm"});
       if(e.altoTejido) L.push({t:"ALTO TEJIDO: " + num(e.altoTejido) + " cm"});
     }else if(k === "visillo"){
-      if(e.cejilla) L.push({t:"CON CEJILLA " + e.cejilla.toUpperCase()});
+      var partes = [];
+      if(e.acabado) partes.push(e.acabado.toUpperCase());
+      if(e.cejilla) partes.push(e.cejilla.toUpperCase());
+      if(partes.length) L.push({t:partes.join(" · ")});
+      var cm = [];
+      if(e.acabado !== "Bastilla abierta" && e.cejillaCm) cm.push("CEJILLA " + num(e.cejillaCm) + " cm");
+      if(e.bastillaCm) cm.push("BASTILLA " + num(e.bastillaCm) + " cm");
+      if(cm.length) L.push({t:cm.join(" · ")});
     }else if(k === "vertical"){
       if(e.lama) L.push({t:"LAMA DE " + num(e.lama) + " mm"});
       if(e.mando) L.push({t:"MANDO A LA " + e.mando.toUpperCase()});
       if(e.apertura){
         L.push({t:"APERTURA: " + (e.apertura === "Centro a extremos" ? "DEL CENTRO A LOS EXTREMOS" : "A LA " + e.apertura.toUpperCase())});
       }
+      if(e.mecColor) L.push({t:"MECANISMO COLOR " + e.mecColor.toUpperCase()});
     }else if(k === "enagua"){
       if(e.mesaAncho){
         var med = e.forma === "Redonda" ? ("Ø " + num(e.mesaAncho) + " cm")
@@ -1134,14 +1232,21 @@
                 : (num(e.mesaAncho) + " × " + num(e.mesaLargo) + " cm");
         L.push({t:"MESA " + (e.forma || "").toUpperCase() + ": " + med});
       }
-      if(e.altoEnagua) L.push({t:"ALTO DE LA ENAGUA: " + num(e.altoEnagua) + " cm"});
+      if(e.altoMesa) L.push({t:"ALTO DE LA MESA: " + num(e.altoMesa) + " cm"});
+      var ae = altoEnaguaDe(e);
+      if(ae > 0) L.push({t:"ALTO DE LA ENAGUA: " + num(ae) + " cm"});
       if(e.tipoEnagua) L.push({t:"ENAGUA " + e.tipoEnagua.toUpperCase()});
       var c = calculoEnagua(e);
       if(c){
         dest.push("MEDIDAS DE LA ENAGUA: " + (e.forma === "Redonda" ? "Ø " + num(c.a) + " cm" : num(c.a) + " × " + num(c.h) + " cm"));
       }else if(e.tipoEnagua === "De machos"){
-        L.push({t:"MEDIDAS DE LA ENAGUA DE MACHOS: CALCULAR A MANO"});
+        L.push({t:"ENAGUA DE MACHOS: SIN FÓRMULA FIJA, MEDIDAS A MANO"});
       }
+    }else if(k === "veneciano" || k === "varilla"){
+      if(k === "veneciano" && e.cintas) L.push({t:num(e.cintas) + " CINTAS"});
+      if(e.mando) L.push({t:"MANDO A LA " + e.mando.toUpperCase()});
+      if(e.tipoMec) L.push({t:"MECANISMO " + (e.tipoMec === "Oculto" ? "OCULTO" : "DE " + e.tipoMec.toUpperCase())});
+      if(e.soportes) L.push({t:"SOPORTE: " + e.soportes.toUpperCase()});
     }else if(k !== "riel"){
       if(e.mando) L.push({t:"MANDO A LA " + e.mando.toUpperCase()});
       if(e.salida) L.push({t:"SALIDA " + e.salida.toUpperCase()});
@@ -1160,26 +1265,12 @@
     return {lineas:L, destacados:dest};
   }
 
+
   /* ---------- impresión ---------- */
   function esquemaPrintHTML(d){
-    var a = d.a, h = d.h;
-    var MAXmm = 70, MINmm = 24;
-    var w = 55, ht = 42;
-    if(a > 0 && h > 0){
-      if(a >= h){ w = MAXmm; ht = Math.max(MINmm, Math.round(MAXmm * h / a)); }
-      else{ ht = MAXmm; w = Math.max(MINmm, Math.round(MAXmm * a / h)); }
-    }
-    var radio = radioForma(d.forma);
-    var estiloRect = "width:" + w + "mm;height:" + ht + "mm;border-radius:" + radio +
-                     (d.sinBarra ? ";border-top-width:1.5pt" : "");
-    return '<div class="p-esq"><div class="zona" style="width:' + (w + 22) + 'mm">' +
-      '<div class="cota-h" style="width:' + w + 'mm"><span class="lin"></span><span class="val">' + esc(a > 0 ? num(a) : "—") + ' cm</span></div>' +
-      '<div class="esq-fila">' +
-        '<div class="rect" style="' + estiloRect + '"></div>' +
-        '<div class="cota-v" style="height:' + ht + 'mm"><span class="lin"></span><span class="val">' + esc(h > 0 ? num(h) : "—") + ' cm<br><span class="alto-tag">ALTO</span></span></div>' +
-      '</div>' +
-    '</div></div>';
+    return '<div class="p-esq">' + dibujoSVG(d, "95mm") + '</div>';
   }
+
 
 
   function construirPrint(){
@@ -1210,6 +1301,7 @@
         if(e.rielTipo) rr.push(esc(e.rielTipo.toUpperCase()));
         if(e.rielMedida) rr.push(esc(num(e.rielMedida)) + " cm");
         if(e.rielColor) rr.push("COLOR " + esc(e.rielColor.toUpperCase()));
+        if(e.rielProveedor) rr.push("DE " + esc(e.rielProveedor.toUpperCase()));
         extras += '<div class="p-extra">RIEL / BARRA: ' + (rr.join(" · ") || "SÍ") + "</div>";
       }
 
@@ -1370,7 +1462,7 @@
       L.push("--------------------------------------");
       r.lineas.forEach(function(l){ L.push(l.t); });
       if(k !== "riel" && k !== "enagua" && (d.a > 0 || d.h > 0)){
-        L.push((d.etq || "MEDIDAS") + ": " + (num(d.a) || "—") + " cm   ·   ALTO: " + (num(d.h) || "—") + " cm");
+        L.push((d.etq || "MEDIDAS") + ": " + (d.cotaSup || "—") + (d.cotaLat ? "   ·   ALTO: " + d.cotaLat : ""));
       }
       r.destacados.forEach(function(t2){ L.push(">>> " + t2); });
       if(e.tejido || e.color || e.proveedor){
@@ -1382,6 +1474,7 @@
         if(e.rielTipo)   rr.push(e.rielTipo);
         if(e.rielMedida) rr.push(num(e.rielMedida) + " cm");
         if(e.rielColor)  rr.push("color " + e.rielColor);
+        if(e.rielProveedor) rr.push("de " + e.rielProveedor);
         L.push("Riel / barra: " + (rr.join(" · ") || "sí"));
       }
       if(e.obs) L.push("Observaciones: " + e.obs);

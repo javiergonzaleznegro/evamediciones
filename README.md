@@ -3,14 +3,14 @@
 Aplicación interna para tomar medidas de estores, cortinas y rieles en casa del
 cliente y generar un PDF por estancia, listo para enviar al proveedor.
 
-**Versión actual: v1.3.1**
+**Versión actual: v1.3.3**
 
 ---
 
 ## Qué hace
 
 - Una ficha por estancia con todos los campos fijos, para que no se olvide ninguno.
-- Cada artículo (estor, cortina o visillo, visillo con cejilla, cortina vertical, noche y día, enagua, riel) muestra solo sus propios campos.
+- Cada artículo (estor enrollable, noche y día, estor veneciano, estor con varilla, cortina o visillo, visillo con cejilla, cortina vertical, enagua, riel) muestra solo sus propios campos.
 - Distingue de forma obligatoria **ancho de tejido** y **ancho de mecanismo**.
 - Dibuja el esquema con las cotas según se escriben las medidas.
 - Genera un **PDF A4 por estancia** con el formato de las hojas de siempre.
@@ -69,3 +69,5 @@ datos de clientes. Al pulsar «Empezar un trabajo nuevo» se borra lo que hubier
 | v1.2.1 | Icono con la regla de cinco marcas y en azul #0060C0, con más contraste. |
 | v1.3.0 | Cada artículo abre su propio menú con sus datos: cortina o visillo, visillo con cejilla, cortina vertical, noche y día y enagua. La enagua de capa calcula sola sus medidas (mesa + 2×alto − 4 cm) y dibuja la forma de la mesa. |
 | v1.3.1 | Pestañas plegables: «Datos del trabajo» y cada estancia se pliegan tocando su cabecera. Al cargar un trabajo con varias estancias, vienen plegadas con su nombre a la vista. |
+| v1.3.2 | Apuntes de Miguel: tubo 18/28/43 mm; «Estor exterior» sustituido por «Estor veneciano» y «Estor con varilla» (sin salida, motor, tubo ni guías; tipo de mecanismo cordón/cadeneta/oculto). Cortina: alto suelo/techo bajo el ancho mecanismo, vuelo en metros en el dibujo y línea de puntos si es partido. Visillo con cejilla: acabado cejilla+bastilla o bastilla abierta, con sus cm en el dibujo; sin riel. Vertical: color del mecanismo. Enagua: «alto de la mesa», alto de la enagua = alto mesa − 2, dibujo de la tapa; formas «canto romo» y «petaca» de lados curvos. Riel: proveedor. Dibujo en SVG. |
+| v1.3.3 | Estor veneciano: número de cintas. Enagua de machos: se indica que no tiene fórmula fija (confirmado por Miguel). |

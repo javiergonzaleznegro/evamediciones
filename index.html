@@ -65,7 +65,7 @@
   }
   .zoom button:active{ background:var(--suave); }
 
-  main{ max-width:46rem; margin:0 auto; padding:0.8rem 0.7rem 2rem; }
+  main{ max-width:46rem; margin:0 auto; padding:0.8rem 0.7rem 2rem; padding-left:min(0.7rem, 16px); padding-right:min(0.7rem, 16px); }
 
   .ic{ width:1.25em; height:1.25em; flex:0 0 auto; stroke:currentColor; fill:none;
        stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; }
@@ -73,7 +73,7 @@
   .acc-borrador button, #btnNuevo{
     display:flex; align-items:center; justify-content:center; gap:0.5rem;
   }
-  .estancia .cab button{ display:inline-flex; align-items:center; gap:0.35rem; }
+  .estancia .acciones button{ display:inline-flex; align-items:center; gap:0.35rem; white-space:nowrap; }
   h2{
     display:flex; align-items:flex-start; gap:0.5rem;
     font-size:1rem; text-transform:uppercase; letter-spacing:.06em;
@@ -136,24 +136,25 @@
   /* ===== Bloques ===== */
   .bloque{
     border:2px solid var(--linea); border-radius:0.6rem;
-    padding:0.9rem 0.9rem 0.1rem; background:#fff;
+    padding:0.9rem 0.9rem 0.1rem; padding:min(0.9rem, 20px) min(0.9rem, 20px) 0.1rem; background:#fff;
   }
   .bloque.trabajo{ border-top:0.3rem solid var(--azul); }
 
   .estancia{
     border:2px solid var(--linea); border-radius:0.6rem;
     border-top:0.3rem solid var(--azul-claro);
-    padding:0.9rem 0.9rem 0.1rem; margin:1rem 0; background:#fff;
+    padding:0.9rem 0.9rem 0.1rem; padding:min(0.9rem, 20px) min(0.9rem, 20px) 0.1rem; margin:1rem 0; background:#fff;
   }
   .estancia .cab{
-    display:flex; align-items:center; gap:0.5rem; margin-bottom:0.8rem;
+    display:flex; align-items:center; gap:0.5rem; gap:min(0.5rem, 12px); margin-bottom:0.8rem;
     cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;
   }
   .cab-titulo{
-    flex:1 1 auto; min-width:0; font-weight:700; font-size:1.05rem; color:var(--tinta);
+    flex:1 1 auto; min-width:0; font-weight:700; font-size:1.05rem; font-size:min(1.05rem, 28px); color:var(--tinta);
     white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
   }
-  .cab .flecha{ width:1.5rem; height:1.5rem; color:var(--azul); flex:0 0 auto;
+  .cab-titulo.vacio{ color:var(--gris); font-weight:600; font-style:italic; }
+  .cab .flecha{ width:1.5rem; height:1.5rem; width:min(1.5rem, 30px); height:min(1.5rem, 30px); color:var(--azul); flex:0 0 auto;
     transition:transform .15s; stroke-width:2.4; }
   .estancia.plegada .flecha{ transform:rotate(-90deg); }
   .estancia.plegada .cuerpo{ display:none; }
@@ -163,19 +164,21 @@
   h2.plegable.cerrado .flecha{ transform:rotate(-90deg); }
   #bloqueTrabajo.plegada{ display:none; }
   .estancia .num{
-    flex:0 0 auto; width:2.4rem; height:2.4rem; border-radius:50%;
+    flex:0 0 auto; width:2.4rem; height:2.4rem; width:min(2.4rem, 46px); height:min(2.4rem, 46px); border-radius:50%;
     background:var(--suave); color:var(--azul); font-weight:800;
-    display:flex; align-items:center; justify-content:center; font-size:1.15rem;
+    display:flex; align-items:center; justify-content:center; font-size:1.15rem; font-size:min(1.15rem, 22px);
   }
-  .estancia .cab .acciones{ margin-left:auto; display:flex; gap:0.4rem; }
-  .estancia .cab button{
+  .estancia .acciones{
+    display:flex; gap:0.5rem; flex-wrap:wrap; justify-content:flex-end; margin:0 0 0.8rem;
+  }
+  .estancia .acciones button{
     min-height:2.7rem; padding:0.3rem 0.7rem;
     font-family:inherit; font-size:0.95rem; font-weight:700;
     border:2px solid var(--linea); border-radius:0.45rem; background:#fff;
     color:var(--gris); cursor:pointer;
   }
-  .estancia .cab button:active{ background:var(--suave); }
-  .estancia .cab button.borrar{ color:var(--error); border-color:#d9a9a3; }
+  .estancia .acciones button:active{ background:var(--suave); }
+  .estancia .acciones button.borrar{ color:var(--error); border-color:#d9a9a3; }
 
   /* ===== Esquema (SVG) ===== */
   .esquema{ display:flex; flex-direction:column; align-items:center; padding:0.2rem 0 1rem; overflow:hidden; }
@@ -383,7 +386,7 @@
 
     <hr class="sep">
     <button type="button" id="btnNuevo"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 6"/><path d="M20 4v6h-6"/></svg>Empezar un trabajo nuevo</button>
-    <p class="version">Toma de medidas · v1.3.3</p>
+    <p class="version">Toma de medidas · v1.3.6</p>
   </div>
 </main>
 
@@ -405,13 +408,13 @@
       <span class="num"></span>
       <span class="cab-titulo">Sin nombre</span>
       <svg class="ic flecha" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-      <div class="acciones">
-        <button type="button" class="duplicar"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Duplicar</button>
-        <button type="button" class="borrar"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13"/></svg>Borrar</button>
-      </div>
     </div>
 
     <div class="cuerpo">
+    <div class="acciones">
+      <button type="button" class="duplicar"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Duplicar</button>
+      <button type="button" class="borrar"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13"/></svg>Borrar</button>
+    </div>
     <div class="fila">
       <div class="campo" data-req="1">
         <label>Estancia <span class="oblig">*</span></label>
@@ -1041,7 +1044,9 @@
   /* ---------- pestañas ---------- */
   function refrescarTitulo(sec){
     var v = $("[data-field=estancia]", sec).value.trim();
-    $(".cab-titulo", sec).textContent = v || "Sin nombre";
+    var t = $(".cab-titulo", sec);
+    t.textContent = v || "Sin nombre";
+    t.classList.toggle("vacio", !v);
   }
   function plegarEstancia(sec, plegar){
     sec.classList.toggle("plegada", !!plegar);
@@ -1282,7 +1287,11 @@
       var k = claveArticulo(e.articulo);
       var r = resumenEstancia(e);
       var d = dimsEstancia(e);
-      var lineas = r.lineas.map(function(l){
+      var lineas = r.lineas.filter(function(l){
+        /* En Cortina o visillo, Miguel quiere ALTO SUELO/TECHO junto a
+           ANCHO MECANISMO debajo de METROS DE TELA, no en este bloque. */
+        return !(k === "cortina" && l.t.indexOf("ALTO SUELO/TECHO:") === 0);
+      }).map(function(l){
         return '<div' + (l.uds ? ' class="uds"' : '') + '>' + esc(l.t) + "</div>";
       });
 
@@ -1296,6 +1305,10 @@
 
       var extras = "";
       if(e.metros) extras += '<div class="p-extra">METROS DE TELA: ' + esc(num(e.metros)) + " m</div>";
+      if(k === "cortina"){
+        if(e.anchoMec) extras += '<div class="p-extra">ANCHO MECANISMO: ' + esc(num(e.anchoMec)) + " cm</div>";
+        if(e.altoST) extras += '<div class="p-extra">ALTO SUELO/TECHO: ' + esc(num(e.altoST)) + " cm</div>";
+      }
       if(e.riel === "Sí"){
         var rr = [];
         if(e.rielTipo) rr.push(esc(e.rielTipo.toUpperCase()));
@@ -1305,8 +1318,11 @@
         extras += '<div class="p-extra">RIEL / BARRA: ' + (rr.join(" · ") || "SÍ") + "</div>";
       }
 
+      var etiquetaEsquema = (k === "cortina")
+        ? ""
+        : '<div class="p-medida-label">' + esc(d.etq || "MEDIDAS") + "</div>";
       var esquema = (k !== "riel" && (d.a > 0 || d.h > 0))
-        ? '<div class="p-medida-label">' + esc(d.etq || "MEDIDAS") + "</div>" + esquemaPrintHTML(d)
+        ? etiquetaEsquema + esquemaPrintHTML(d)
         : "";
 
       html +=

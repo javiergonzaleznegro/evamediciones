@@ -3,7 +3,7 @@
 Aplicación interna para tomar medidas de estores, cortinas y rieles en casa del
 cliente y generar un PDF por estancia, listo para enviar al proveedor.
 
-**Versión actual: v1.3.3**
+**Versión actual: v1.3.6**
 
 ---
 
@@ -28,7 +28,7 @@ datos de clientes. Al pulsar «Empezar un trabajo nuevo» se borra lo que hubier
 
 ## Publicar con GitHub Pages
 
-1. Crear un repositorio nuevo llamado `eva-medidas`, de tipo **Public**.
+1. Repositorio: `javiergonzaleznegro/evamediciones`, **Public** (el nombre `eva-medidas` solo se usa como prefijo interno de la caché).
 2. Subir estos archivos a la raíz (`Add file` → `Upload files` → `Commit changes`):
    - `index.html`
    - `manifest.webmanifest`
@@ -40,7 +40,7 @@ datos de clientes. Al pulsar «Empezar un trabajo nuevo» se borra lo que hubier
 3. `Settings` → `Pages` → en **Source** elegir `Deploy from a branch`,
    rama `main` y carpeta `/ (root)` → `Save`.
 4. Esperar uno o dos minutos. La dirección será:
-   `https://USUARIO.github.io/eva-medidas/`
+   `https://javiergonzaleznegro.github.io/evamediciones/`
 
 ## Instalar en el móvil o la tablet
 
@@ -71,3 +71,6 @@ datos de clientes. Al pulsar «Empezar un trabajo nuevo» se borra lo que hubier
 | v1.3.1 | Pestañas plegables: «Datos del trabajo» y cada estancia se pliegan tocando su cabecera. Al cargar un trabajo con varias estancias, vienen plegadas con su nombre a la vista. |
 | v1.3.2 | Apuntes de Miguel: tubo 18/28/43 mm; «Estor exterior» sustituido por «Estor veneciano» y «Estor con varilla» (sin salida, motor, tubo ni guías; tipo de mecanismo cordón/cadeneta/oculto). Cortina: alto suelo/techo bajo el ancho mecanismo, vuelo en metros en el dibujo y línea de puntos si es partido. Visillo con cejilla: acabado cejilla+bastilla o bastilla abierta, con sus cm en el dibujo; sin riel. Vertical: color del mecanismo. Enagua: «alto de la mesa», alto de la enagua = alto mesa − 2, dibujo de la tapa; formas «canto romo» y «petaca» de lados curvos. Riel: proveedor. Dibujo en SVG. |
 | v1.3.3 | Estor veneciano: número de cintas. Enagua de machos: se indica que no tiene fórmula fija (confirmado por Miguel). |
+| v1.3.4 | (entregada, no publicada) Cabecera de estancia solo con número, nombre y flecha; Duplicar y Borrar pasan a la primera línea del cuerpo. Con la letra grande en móvil, los botones tapaban el nombre y se salían del recuadro. |
+| v1.3.5 | Entregada, no publicada. Consolida los cambios de v1.3.4, corrige el README al repositorio real `evamediciones` y deja `validador.js` solo en Drive. |
+| v1.3.6 | PDF de Cortina o visillo: ANCHO MECANISMO y ALTO SUELO/TECHO pasan debajo de METROS DE TELA, en ese orden, según corrección de Miguel del 25/09/2026. |
